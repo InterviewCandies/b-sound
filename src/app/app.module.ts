@@ -10,17 +10,20 @@ import {BaseModule} from "./base/base.module";
 import {MODULES} from "./modules";
 import {RouterModule, Routes} from "@angular/router";
 import {EditorComponent} from "./modules/sound-editor/editor/editor.component";
-import {FileUploadComponent} from "./modules/sound-editor/file-upload/file-upload.component";
 import {MatIconModule} from "@angular/material/icon";
+import {SoundsViewComponent} from "./modules/sounds/sounds-view/sounds-view.component";
+import { ProfileComponent } from './modules/profile/profile.component';
+import {MatDialogModule} from "@angular/material/dialog";
 
 const appRoutes: Routes = [
   {path: '', component: EditorComponent},
-  {path: 'list', component: FileUploadComponent}
+  {path: 'sounds', component: SoundsViewComponent}
 ]
 
 @NgModule({
   declarations: [
     AppComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +33,7 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatCardModule,
     MatIconModule,
+    MatDialogModule,
     RouterModule.forRoot(appRoutes),
     ...MODULES
   ],
