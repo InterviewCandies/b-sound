@@ -1,0 +1,31 @@
+$space-base-value: 8px;
+
+@mixin margin($direction: all, $dp: 1) {
+  $amount: $space-base-value * $dp;
+  @if $direction == all {
+    padding: $amount;
+  } @else if $direction == left {
+    padding-left: $amount;
+  } @else if $direction == right {
+    padding-right: $amount;
+  } @else if $direction == top {
+    padding-top: $amount;
+  } @else if $direction == bottom {
+    padding-bottom: $amount;
+  }
+}
+
+@mixin padding($direction: all, $dp: 1) {
+  $amount: $space-base-value * $dp;
+  @if $direction == all {
+    padding: $amount;
+  } @else if $direction == left {
+    padding-left: $amount;
+  } @else if $direction == right {
+    padding-right: $amount;
+  } @else if $direction == top {
+    padding-top: $amount;
+  } @else if $direction == bottom {
+    padding-bottom: $amount;
+  }
+}

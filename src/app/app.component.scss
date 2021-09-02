@@ -1,0 +1,12 @@
+@import '/src/styles/mixin';
+
+.container {
+  @include padding(all, 2);
+}
+
+.row {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+}
