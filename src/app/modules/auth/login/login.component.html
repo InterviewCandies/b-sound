@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="login-box" fxLayout="column" fxLayoutAlign="start center">
+    <img src="../../../../assets/images/logo.png" alt="logo" class="logo" />
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <app-auth-input
+        formControlName="username"
+        placeholder="Username"
+        icon="person"
+      ></app-auth-input>
+      <app-auth-input
+        type="password"
+        formControlName="password"
+        placeholder="Password"
+        icon="lock"
+      ></app-auth-input>
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        class="login-button"
+      >
+        Login
+      </button>
+    </form>
+    <p class="sign-up-text">
+      Don't have an account ? <a href="/register">Sign up</a>
+    </p>
+  </div>
+  <div class="overlay"></div>
+</div>

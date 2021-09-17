@@ -1,0 +1,63 @@
+@import "/src/styles/rem";
+@import "/src/styles//mixin";
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../../../../assets//images/bg-login.jpg");
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(65, 58, 58, 0.69);
+  display: flex;
+  overflow: hidden;
+}
+
+.login-box {
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+
+  form {
+    width: 400px;
+  }
+
+  form > * {
+    width: 100%;
+  }
+
+  .logo {
+    width: rem(250px);
+    object-fit: contain;
+    @include margin(top, 15);
+    @include margin(bottom, 12);
+  }
+
+  .login-button {
+    font-size: rem(18px);
+  }
+}
+
+.mat-raised-button {
+  @include padding(top, 1);
+  @include padding(bottom, 1);
+}
+
+.sign-up-text {
+  margin: 0;
+  font-size: rem(16px);
+  text-align: center;
+  position: absolute;
+  bottom: rem(80px);
+
+  a {
+    color: #fff;
+    font-weight: 600;
+  }
+}
