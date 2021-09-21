@@ -5,7 +5,7 @@
 $background-color: #303030;
 
 $primary: mat-palette($mat-yellow, 300);
-$accent: mat-palette($mat-orange, 200);
+$accent: mat-palette($mat-grey, 200);
 $theme: mat-light-theme($primary, $accent);
 
 @include angular-material-theme($theme);

@@ -1,6 +1,10 @@
+.logo {
+  width: 120px;
+  object-fit: contain;
+}
+
 .row {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
-  gap: 20px;
 }

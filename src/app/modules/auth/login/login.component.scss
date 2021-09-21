@@ -1,13 +1,49 @@
 @import "/src/styles/rem";
-@import "/src/styles//mixin";
+@import "/src/styles/mixin";
+
+::ng-deep {
+  .mat-dialog-container {
+    padding: 0;
+    overflow: hidden;
+  }
+}
+
+.dialog-container {
+  width: max-content;
+  padding: 0;
+  position: relative;
+
+  .close-button {
+    position: absolute;
+    color: #fff;
+    z-index: 10;
+    font-size: rem(20px);
+    top: rem(10px);
+    right: rem(30px);
+  }
+
+  .logo {
+    width: rem(100px);
+    z-index: 10;
+    object-fit: contain;
+    position: absolute;
+    top: rem(20px);
+    left: rem(40px);
+  }
+}
 
 .container {
-  width: 100vw;
-  height: 100vh;
+  height: 100%;
   background-image: url("../../../../assets//images/bg-login.jpg");
   background-position: center;
   background-size: cover;
   overflow: hidden;
+  box-sizing: border-box;
+  @include padding(left, 10);
+  @include padding(right, 10);
+  @include padding(top, 12);
+  @include padding(bottom, 10);
+  position: relative;
 }
 
 .overlay {
@@ -19,10 +55,15 @@
 }
 
 .login-box {
-  position: absolute;
   z-index: 10;
   width: 100%;
   height: 100%;
+
+  .heading {
+    font-size: rem(24px);
+    font-weight: 600;
+    color: #fff;
+  }
 
   form {
     width: 400px;
@@ -30,13 +71,6 @@
 
   form > * {
     width: 100%;
-  }
-
-  .logo {
-    width: rem(250px);
-    object-fit: contain;
-    @include margin(top, 15);
-    @include margin(bottom, 12);
   }
 
   .login-button {
@@ -53,11 +87,12 @@
   margin: 0;
   font-size: rem(16px);
   text-align: center;
+  color: #fff;
   position: absolute;
-  bottom: rem(80px);
+  bottom: rem(20px);
 
   a {
-    color: #fff;
     font-weight: 600;
+    color: #fff;
   }
 }

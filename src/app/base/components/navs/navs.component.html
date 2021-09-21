@@ -1,13 +1,18 @@
 <div class="row">
-  <a routerLink="/list"> list </a>
-  <button mat-mini-fab>
-
-    <mat-icon>search</mat-icon>
-  </button>
-  <button mat-mini-fab>
-    <mat-icon>search</mat-icon>
-  </button>
-  <button mat-mini-fab>
-    <mat-icon>search</mat-icon>
-  </button>
+  <img src="../../../assets/images/logo.png" class="logo" />
+  <div fxLayout="row" fxLayoutGap="20px">
+    <button mat-mini-fab routerLink="/">
+      <mat-icon>home</mat-icon>
+    </button>
+    <button mat-mini-fab routerLink="/editor">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-mini-fab routerLink="/collection">
+      <mat-icon>list</mat-icon>
+    </button>
+    <button mat-mini-fab (click)="openAuthentication()">
+      <mat-icon>person</mat-icon>
+    </button>
+  </div>
 </div>
+<router-outlet></router-outlet>

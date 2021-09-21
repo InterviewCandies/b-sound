@@ -11,18 +11,33 @@ import { MODULES } from './modules';
 import { RouterModule, Routes } from '@angular/router';
 import { EditorComponent } from './modules/sound-editor/editor/editor.component';
 import { MatIconModule } from '@angular/material/icon';
-import { SoundsViewComponent } from './modules/sounds/sounds-view/sounds-view.component';
 import { ProfileComponent } from './modules/profile/profile.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { LoginComponent } from './modules/auth/login/login.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { AuthModule } from './modules/auth/auth.module';
 import { RegisterComponent } from './modules/auth/register/register.component';
+import { SoundsComponent } from './modules/sounds/sounds.component';
+import { SoundsListComponent } from './modules/sounds/sounds-list/sounds-list.component';
+import { SoundsCollectionComponent } from './modules/sounds/sounds-collection/sounds-collection.component';
+import { HttpClient } from '@angular/common/http';
+import { CoreModule } from './core/core.module';
+import { CategoryService } from './core/services/category.service';
+import { SoundPlayerComponent } from './modules/sounds/sound-player/sound-player.component';
 
 const appRoutes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'sounds', component: SoundsViewComponent },
+  { path: 'sounds/:id', component: SoundPlayerComponent },
+  {
+    path: '',
+    component: SoundsComponent,
+    children: [
+      { path: 'sounds', component: SoundsListComponent },
+      { path: 'editor', component: EditorComponent },
+      { path: 'collection', component: SoundPlayerComponent },
+    ],
+  },
+  { path: '**', component: LoginComponent },
 ];
 
 @NgModule({
@@ -37,11 +52,10 @@ const appRoutes: Routes = [
     MatIconModule,
     MatDialogModule,
     FlexLayoutModule,
-    AuthModule,
+    CoreModule,
     RouterModule.forRoot(appRoutes),
     ...MODULES,
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

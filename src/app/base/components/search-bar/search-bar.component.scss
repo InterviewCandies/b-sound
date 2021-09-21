@@ -1,0 +1,23 @@
+@import "../../../../styles/mixin";
+
+.input-wrapper {
+  background-color: #fff;
+  border-radius: 20px;
+  min-width: rem(300px);
+  margin: auto;
+  @include padding(top, 1);
+  @include padding(bottom, 1);
+  @include padding(left, 2);
+  @include padding(right, 1);
+
+  mat-icon {
+    color: #000;
+    @include padding(right, 1);
+  }
+
+  input {
+    outline: none;
+    flex-grow: 1;
+    border: none;
+  }
+}

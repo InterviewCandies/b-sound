@@ -1,0 +1,18 @@
+@import "../../../../styles/rem";
+@import "../../../../styles/mixin";
+
+.wrapper {
+  border-radius: rem(20px);
+  @include padding(all, 1);
+  background-color: rgba(87, 87, 87, 0.38);
+}
+
+.icon {
+  width: rem(24px);
+  height: rem(24px);
+  color: #fff;
+
+  path {
+    fill: orange;
+  }
+}

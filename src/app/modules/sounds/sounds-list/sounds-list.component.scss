@@ -1,0 +1,146 @@
+@import "../../../../styles/rem";
+@import "../../../../styles/mixin";
+@import "../../../../styles/color";
+
+.wrapper {
+  @include padding(all, 2);
+
+  .search-and-filter {
+    width: 100%;
+  }
+
+  .filter-button {
+    width: rem(48px);
+    height: rem(48px);
+    line-height: rem(48px);
+
+    .mat-icon {
+      font-size: rem(48px);
+      width: rem(48px);
+      height: rem(48px);
+      line-height: rem(48px);
+    }
+  }
+
+  .search-bar {
+    margin: auto;
+  }
+
+  & > * {
+    width: 100%;
+  }
+}
+
+.heading {
+  font-size: rem(24px);
+  text-align: center;
+
+  span {
+    color: $primary-color;
+  }
+}
+
+.sound-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-gap: rem(30px);
+  width: 100%;
+}
+
+.sound-container {
+  position: relative;
+}
+
+.sound-heading {
+  font-weight: 600;
+  font-size: rem(20px);
+  color: $primary-color;
+}
+
+.sound-image {
+  width: 100%;
+  height: rem(180px);
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.sound-title {
+  width: rem(220px);
+  font-size: rem(13px);
+  font-weight: 300;
+}
+
+.play-icon {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  display: none;
+  font-size: rem(50px);
+  transform: translate(-50%, -40%);
+}
+
+.sound-container:hover {
+  .play-icon {
+    display: block;
+  }
+  .sound-image {
+    opacity: 0.5;
+  }
+  cursor: pointer;
+}
+
+.mat-chip.mat-standard-chip {
+  background-color: #616161;
+  color: #fff;
+}
+
+.tags-filter {
+  @include margin(top, 1);
+  width: 100%;
+}
+
+mat-form-field ::ng-deep {
+  .mat-form-field-flex {
+    background-color: #000;
+  }
+  .mat-form-field-infix {
+    width: rem(200px);
+  }
+  .mat-form-field-label {
+    color: #fff;
+  }
+  .mat-select-arrow {
+    color: #fff;
+  }
+  mat-select-trigger {
+    color: #fff;
+  }
+}
+
+.mat-form-field {
+  width: max-content;
+}
+
+::ng-deep .mat-select-panel {
+  background-color: #000;
+  color: #fff;
+  .mat-pseudo-checkbox {
+    color: #fff;
+  }
+  .mat-option {
+    color: #fff;
+  }
+  .mat-selected.mat-option-text {
+    color: $primary-color;
+  }
+  .mat-pseudo-checkbox-checked::after {
+    color: #000;
+  }
+}
+
+.example-additional-selection {
+  opacity: 0.75;
+  font-size: 0.75em;
+}

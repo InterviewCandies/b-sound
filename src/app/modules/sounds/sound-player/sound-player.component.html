@@ -1,0 +1,16 @@
+<div
+  class="background"
+  *ngIf="sound"
+  [ngStyle]="{ 'background-image': 'url(' + sound.image + ')' }"
+>
+  <div class="overlay" fxLayout="column" fxLayoutAlign="center center">
+    <img [src]="sound.image" class="circle-image" />
+    <h3>{{ sound.name }}</h3>
+    <audio controls [loop]="options.isRepeating" #audio>
+      <source
+        src="https://www.mboxdrive.com/Thunder-Storm_GEN-HD2-32212_preview.mp3"
+      />
+    </audio>
+    <app-sound-options class="options" #options></app-sound-options>
+  </div>
+</div>

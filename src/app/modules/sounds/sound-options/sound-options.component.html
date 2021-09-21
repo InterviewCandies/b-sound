@@ -1,0 +1,72 @@
+<div fxLayout="column" fxLayoutGap="16px" class="wrapper">
+  <button
+    [matTooltip]="endTime + ' minutes'"
+    matTooltipPosition="left"
+    mat-icon-button
+    (click)="onSetTime()"
+    [color]="endTime ? 'primary' : 'default'"
+  >
+    <mat-icon>timer</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    (click)="onRepeat()"
+    [matTooltip]="isRepeating ? 'No-repeat' : 'Repeat'"
+    matTooltipPosition="left"
+    [color]="isRepeating ? 'primary' : 'default'"
+  >
+    <mat-icon>repeat</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    [matTooltip]="getSoundTooltip('Mediation bell', 'bell')"
+    matTooltipPosition="left"
+    (click)="onClickSound('../../../../assets/audios/bell.mp3')"
+    [color]="getTimer('bell') ? 'primary' : ''"
+  >
+    <mat-icon>notifications</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    [matTooltip]="getSoundTooltip('Mediation water', 'water')"
+    matTooltipPosition="left"
+    (click)="onClickSound('../../../../assets/audios/water.mp3')"
+    [color]="getTimer('water') ? 'primary' : ''"
+  >
+    <mat-icon>water_drop</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    (click)="onClickSound('../../../../assets/audios/bird.mp3')"
+    [color]="getTimer('bird') ? 'primary' : ''"
+  >
+    <img src="../../../../assets/images/bird-icon.svg" class="icon" />
+  </button>
+  <button
+    mat-icon-button
+    [matTooltip]="getSoundTooltip('Thunder', 'thunder')"
+    matTooltipPosition="left"
+    (click)="onClickSound('../../../../assets/audios/thunder.mp3')"
+    [color]="getTimer('thunder') ? 'primary' : ''"
+  >
+    <mat-icon>bolt</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    [matTooltip]="getSoundTooltip('Sea waves', 'waves')"
+    matTooltipPosition="left"
+    (click)="onClickSound('../../../../assets/audios/waves.mp3')"
+    [color]="getTimer('waves') ? 'primary' : ''"
+  >
+    <mat-icon>waves</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    [matTooltip]="getSoundTooltip('Wind howl', 'wind')"
+    matTooltipPosition="left"
+    (click)="onClickSound('../../../../assets/audios/wind.mp3')"
+    [color]="getTimer('wind') ? 'primary' : ''"
+  >
+    <mat-icon>air</mat-icon>
+  </button>
+</div>

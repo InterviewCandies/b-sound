@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RegisterComponent } from './register/register.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [LoginComponent, AuthInputComponent, RegisterComponent],
@@ -17,6 +18,7 @@ import { RegisterComponent } from './register/register.component';
     FormsModule,
     MatInputModule,
     MatIconModule,
+    MatDialogModule,
     MatButtonModule,
   ],
   exports: [AuthInputComponent],

@@ -1,0 +1,5 @@
+@import "/src/styles/mixin";
+
+.container {
+  @include padding(all, 3);
+}

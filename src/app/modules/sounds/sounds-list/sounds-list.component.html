@@ -1,0 +1,61 @@
+<div class="wrapper" fxLayout="column" fxLayoutAlign="none center">
+  <h2 class="heading">Explore and <span>#boostYourProductivity</span> today</h2>
+  <div
+    fxLayout="row"
+    class="search-and-filter"
+    fxLayoutAlign="center center"
+    fxLayoutGap="16px"
+  >
+    <app-search-bar #search fxFlex="50"></app-search-bar>
+    <button
+      class="filter-button"
+      mat-icon-button
+      matTooltip="Filter"
+      (click)="onShowFilter()"
+      [color]="isFilterShowing ? 'primary' : ''"
+    >
+      <mat-icon>view_list</mat-icon>
+    </button>
+  </div>
+  <div fxLayout="row" fxLayoutGap="16px" *ngIf="isFilterShowing">
+    <mat-form-field appearance="fill" class="tags-filter">
+      <mat-label>Tags</mat-label>
+      <mat-select [formControl]="toppings" multiple>
+        <mat-select-trigger>
+          {{ toppings.value ? toppings.value[0] : "" }}
+          <span
+            *ngIf="toppings.value?.length > 1"
+            class="example-additional-selection"
+          >
+            (+{{ toppings.value.length - 1 }}
+            {{ toppings.value?.length === 2 ? "other" : "others" }})
+          </span>
+        </mat-select-trigger>
+        <mat-option *ngFor="let topping of toppingList" [value]="topping">{{
+          topping
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div fxLayout="column" fxLayoutGap="32px">
+    <div *ngFor="let category of categories">
+      <p class="sound-heading">{{ category.name }}</p>
+      <div class="sound-list">
+        <div
+          fxLayout="column"
+          fxLayoutGap="8px"
+          *ngFor="let item of category.sounds"
+          class="sound-container"
+          (click)="onSelectSound(item)"
+        >
+          <img class="sound-image" [src]="item.image" />
+          <mat-icon class="play-icon">play_circle</mat-icon>
+          <span class="sound-title">{{ item.name }}</span>
+          <mat-chip-list>
+            <mat-chip *ngFor="let tag of item.tags">{{ tag }}</mat-chip>
+          </mat-chip-list>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
