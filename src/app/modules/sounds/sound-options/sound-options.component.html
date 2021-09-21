@@ -1,40 +1,36 @@
 <div fxLayout="column" fxLayoutGap="16px" class="wrapper">
-  <button
-    [matTooltip]="endTime + ' minutes'"
-    matTooltipPosition="left"
-    mat-icon-button
-    (click)="onSetTime()"
+  <app-option-button
+    [disabled]="disabled"
+    [tooltipMessage]="endTime ? endTime + ' minutes' : 'Timer'"
     [color]="endTime ? 'primary' : 'default'"
+    (onClick)="onSetTime()"
+    icon="timer"
   >
-    <mat-icon>timer</mat-icon>
-  </button>
-  <button
-    mat-icon-button
-    (click)="onRepeat()"
-    [matTooltip]="isRepeating ? 'No-repeat' : 'Repeat'"
-    matTooltipPosition="left"
+  </app-option-button>
+  <app-option-button
+    [disabled]="disabled"
+    [tooltipMessage]="isRepeating ? 'No-repeat' : 'Repeat'"
     [color]="isRepeating ? 'primary' : 'default'"
+    (onClick)="onRepeat()"
+    icon="repeat"
   >
-    <mat-icon>repeat</mat-icon>
-  </button>
-  <button
-    mat-icon-button
-    [matTooltip]="getSoundTooltip('Mediation bell', 'bell')"
-    matTooltipPosition="left"
-    (click)="onClickSound('../../../../assets/audios/bell.mp3')"
+  </app-option-button>
+  <app-option-button
+    [disabled]="disabled"
+    [tooltipMessage]="getSoundTooltip('Mediation bell', 'bell')"
     [color]="getTimer('bell') ? 'primary' : ''"
+    (onClick)="onClickSound('../../../../assets/audios/bell.mp3')"
+    icon="notifications"
   >
-    <mat-icon>notifications</mat-icon>
-  </button>
-  <button
-    mat-icon-button
-    [matTooltip]="getSoundTooltip('Mediation water', 'water')"
-    matTooltipPosition="left"
-    (click)="onClickSound('../../../../assets/audios/water.mp3')"
+  </app-option-button>
+  <app-option-button
+    [disabled]="disabled"
+    [tooltipMessage]="getSoundTooltip('Mediation water', 'water')"
     [color]="getTimer('water') ? 'primary' : ''"
+    (onClick)="onClickSound('../../../../assets/audios/water.mp3')"
+    icon="water_drop"
   >
-    <mat-icon>water_drop</mat-icon>
-  </button>
+  </app-option-button>
   <button
     mat-icon-button
     (click)="onClickSound('../../../../assets/audios/bird.mp3')"
@@ -42,31 +38,36 @@
   >
     <img src="../../../../assets/images/bird-icon.svg" class="icon" />
   </button>
-  <button
-    mat-icon-button
-    [matTooltip]="getSoundTooltip('Thunder', 'thunder')"
-    matTooltipPosition="left"
-    (click)="onClickSound('../../../../assets/audios/thunder.mp3')"
+  <app-option-button
+    [disabled]="disabled"
+    [tooltipMessage]="getSoundTooltip('Birds sing', 'birds')"
+    [color]="getTimer('bird') ? 'primary' : ''"
+    (onClick)="onClickSound('../../../../assets/audios/bird.mp3')"
+    icon="music_note"
+  >
+  </app-option-button>
+  <app-option-button
+    [disabled]="disabled"
+    [tooltipMessage]="getSoundTooltip('Thunder', 'thunder')"
     [color]="getTimer('thunder') ? 'primary' : ''"
+    (onClick)="onClickSound('../../../../assets/audios/thunder.mp3')"
+    icon="bolt"
   >
-    <mat-icon>bolt</mat-icon>
-  </button>
-  <button
-    mat-icon-button
-    [matTooltip]="getSoundTooltip('Sea waves', 'waves')"
-    matTooltipPosition="left"
-    (click)="onClickSound('../../../../assets/audios/waves.mp3')"
+  </app-option-button>
+  <app-option-button
+    [disabled]="disabled"
+    [tooltipMessage]="getSoundTooltip('Sea waves', 'waves')"
     [color]="getTimer('waves') ? 'primary' : ''"
+    (onClick)="onClickSound('../../../../assets/audios/waves.mp3')"
+    icon="waves"
   >
-    <mat-icon>waves</mat-icon>
-  </button>
-  <button
-    mat-icon-button
-    [matTooltip]="getSoundTooltip('Wind howl', 'wind')"
-    matTooltipPosition="left"
-    (click)="onClickSound('../../../../assets/audios/wind.mp3')"
+  </app-option-button>
+  <app-option-button
+    [disabled]="disabled"
+    [tooltipMessage]="getSoundTooltip('Wind howl', 'wind')"
     [color]="getTimer('wind') ? 'primary' : ''"
+    (onClick)="onClickSound('../../../../assets/audios/wind.mp3')"
+    icon="air"
   >
-    <mat-icon>air</mat-icon>
-  </button>
+  </app-option-button>
 </div>

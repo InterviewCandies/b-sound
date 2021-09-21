@@ -1,0 +1,10 @@
+<div *ngIf="loading" class="indicator">
+  <div class="spinner-pages-container" *ngIf="type === 'dots'">
+    <div class="loading-icon ball-beat">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+  <span class="message">{{ message }}</span>
+</div>

@@ -4,13 +4,17 @@
     <button mat-mini-fab routerLink="/">
       <mat-icon>home</mat-icon>
     </button>
-    <button mat-mini-fab routerLink="/editor">
+    <button mat-mini-fab (click)="openLink('/editor')">
       <mat-icon>edit</mat-icon>
     </button>
-    <button mat-mini-fab routerLink="/collection">
+    <button mat-mini-fab (click)="openLink('/collection')">
       <mat-icon>list</mat-icon>
     </button>
-    <button mat-mini-fab (click)="openAuthentication()">
+    <button
+      [matTooltip]="isAuthenticated ? 'Log out' : ''"
+      mat-mini-fab
+      (click)="isAuthenticated ? openProfile() : openAuthentication()"
+    >
       <mat-icon>person</mat-icon>
     </button>
   </div>

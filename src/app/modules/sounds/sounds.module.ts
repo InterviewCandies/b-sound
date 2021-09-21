@@ -3,7 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { EditorComponent } from '../sound-editor/editor/editor.component';
-import { SoundsRoutingModule } from '../../base/sounds-routing.module';
+import { SoundsRoutingModule } from './sounds-routing.module';
 import { SoundsComponent } from './sounds.component';
 import { SoundsListComponent } from './sounds-list/sounds-list.component';
 import { SoundsCollectionComponent } from './sounds-collection/sounds-collection.component';
@@ -19,6 +19,9 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OptionButtonComponent } from './sound-options/option-button/option-button.component';
+import { SoundProducerComponent } from './sound-producer/sound-producer.component';
+import { SoundUploadComponent } from './sound-producer/sound-upload/sound-upload.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SoundsCollectionComponent,
     SoundPlayerComponent,
     SoundOptionsComponent,
+    OptionButtonComponent,
+    SoundProducerComponent,
+    SoundUploadComponent,
   ],
   imports: [
     MatIconModule,

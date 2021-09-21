@@ -37,9 +37,14 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <div fxLayout="column" fxLayoutGap="32px">
+  <app-loader
+    [loading]="isLoading"
+    message="Loading sounds"
+    type="dots"
+  ></app-loader>
+  <div fxLayout="column" fxLayoutGap="32px" *ngIf="categories.length">
     <div *ngFor="let category of categories">
-      <p class="sound-heading">{{ category.name }}</p>
+      <p class="sound-heading">{{ displayCategoryName(category.name) }}</p>
       <div class="sound-list">
         <div
           fxLayout="column"

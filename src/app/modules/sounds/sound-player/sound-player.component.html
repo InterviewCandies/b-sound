@@ -1,3 +1,11 @@
+<app-loader
+  [loading]="isLoading"
+  *ngIf="isLoading"
+  type="dots"
+  message="Loading sound"
+  fxLayout="row"
+  fxLayoutAlign="center center"
+></app-loader>
 <div
   class="background"
   *ngIf="sound"
@@ -7,10 +15,12 @@
     <img [src]="sound.image" class="circle-image" />
     <h3>{{ sound.name }}</h3>
     <audio controls [loop]="options.isRepeating" #audio>
-      <source
-        src="https://www.mboxdrive.com/Thunder-Storm_GEN-HD2-32212_preview.mp3"
-      />
+      <source [src]="sound.audio" />
     </audio>
-    <app-sound-options class="options" #options></app-sound-options>
+    <app-sound-options
+      class="options"
+      #options
+      [disabled]="false"
+    ></app-sound-options>
   </div>
 </div>

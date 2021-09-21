@@ -1,0 +1,16 @@
+@import "../../../../styles/mixin";
+@import "../../../../styles/rem";
+
+.container {
+  .message {
+    font-size: rem(16px);
+  }
+
+  .success-icon {
+    color: green;
+  }
+
+  .error-icon {
+    color: red;
+  }
+}

@@ -23,21 +23,20 @@ import { HttpClient } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
 import { CategoryService } from './core/services/category.service';
 import { SoundPlayerComponent } from './modules/sounds/sound-player/sound-player.component';
+import { SoundProducerComponent } from './modules/sounds/sound-producer/sound-producer.component';
 
 const appRoutes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
   { path: 'sounds/:id', component: SoundPlayerComponent },
   {
     path: '',
     component: SoundsComponent,
     children: [
       { path: 'sounds', component: SoundsListComponent },
-      { path: 'editor', component: EditorComponent },
+      { path: 'editor', component: SoundProducerComponent },
       { path: 'collection', component: SoundPlayerComponent },
     ],
   },
-  { path: '**', component: LoginComponent },
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({

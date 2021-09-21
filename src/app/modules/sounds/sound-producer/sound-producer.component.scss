@@ -1,0 +1,18 @@
+@import "../../../../styles/mixin";
+@import "../../../../styles/rem";
+
+.container {
+  @include padding(all, 3);
+
+  app-sound-options {
+    position: fixed;
+    right: rem(16px);
+    bottom: rem(16px);
+  }
+
+  .actions {
+    position: fixed;
+    left: rem(16px);
+    bottom: rem(32px);
+  }
+}

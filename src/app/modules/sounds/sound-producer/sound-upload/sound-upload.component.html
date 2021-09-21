@@ -1,0 +1,25 @@
+<div
+  class="upload-box"
+  fileDrop
+  (click)="disabled ? null : fileInput.click()"
+  data-cy="fileDrop"
+>
+  <mat-icon class="upload-icon">description</mat-icon>
+  <p *ngIf="!forceFileType" class="upload-guide">
+    Drag and drop your file(s) or click here to upload...
+  </p>
+  <p *ngIf="forceFileType" class="upload-guide">
+    Drag and drop <strong>{{ forceTypeName }}</strong> or click here to
+    upload...
+  </p>
+  <p class="dragndrop-guide">Drop file(s) to upload</p>
+</div>
+<input
+  type="file"
+  style="display: none"
+  #fileInput
+  hidden
+  [accept]="acceptedFileTypes"
+  (change)="onFilesSelected(fileInput.files)"
+  (click)="onClicked()"
+/>

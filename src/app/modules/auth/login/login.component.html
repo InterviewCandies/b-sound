@@ -6,7 +6,7 @@
   <div class="container">
     <div class="login-box" fxLayout="column" fxLayoutAlign="start center">
       <div fxLayout="row" fxLayoutGap="100px">
-        <form [formGroup]="form" (ngSubmit)="onSubmit()" fxFlex="50">
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin()" fxFlex="50">
           <p class="heading">Login</p>
           <app-auth-input
             formControlName="username"
@@ -24,12 +24,12 @@
             mat-raised-button
             color="primary"
             class="login-button"
-            (click)="onLogin()"
+            [disabled]="isLogin"
           >
             Login
           </button>
         </form>
-        <form [formGroup]="form" (ngSubmit)="onSubmit()" fxFlex="50">
+        <form [formGroup]="registerForm" (ngSubmit)="onRegister()" fxFlex="50">
           <p class="heading">Register</p>
           <app-auth-input
             formControlName="username"
@@ -53,6 +53,7 @@
             mat-raised-button
             color="primary"
             class="login-button"
+            [disabled]="isRegister"
           >
             Register
           </button>

@@ -8,18 +8,36 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CustomDialogComponent } from './components/custom-dialog/custom-dialog.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { SoundsRoutingModule } from './sounds-routing.module';
+import { SoundsRoutingModule } from '../modules/sounds/sounds-routing.module';
+import { LoaderComponent } from './components/loader/loader.component';
+import { CommonModule } from '@angular/common';
+import { SimpleToasterComponent } from './components/simple-toaster/simple-toaster.component';
+import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
-  declarations: [NavsComponent, SearchBarComponent, CustomDialogComponent],
+  declarations: [
+    NavsComponent,
+    SearchBarComponent,
+    CustomDialogComponent,
+    LoaderComponent,
+    SimpleToasterComponent,
+  ],
   imports: [
+    CommonModule,
     MatButtonModule,
     MatIconModule,
     MatInputModule,
     FlexLayoutModule,
+    MatTooltipModule,
     MatFormFieldModule,
     RouterModule.forChild(SoundsRoutingModule),
   ],
-  exports: [NavsComponent, SearchBarComponent, RouterModule],
+  exports: [
+    NavsComponent,
+    SearchBarComponent,
+    RouterModule,
+    LoaderComponent,
+    SimpleToasterComponent,
+  ],
 })
 export class BaseModule {}

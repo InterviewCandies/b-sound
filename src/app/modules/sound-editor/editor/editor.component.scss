@@ -2,11 +2,7 @@
 
 .container {
   position: relative;
-}
-
-.files {
-  @include padding(left, 4);
-  @include padding(right, 4);
+  @include padding("all", 2);
 }
 
 .buttons {

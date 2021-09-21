@@ -5,6 +5,12 @@
 .wrapper {
   @include padding(all, 2);
 
+  height: calc(100vh - 100px);
+
+  app-loader {
+    flex-grow: 1;
+  }
+
   .search-and-filter {
     width: 100%;
   }
@@ -42,9 +48,10 @@
 
 .sound-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: rem(30px);
   width: 100%;
+  @include margin(bottom, 3);
 }
 
 .sound-container {
@@ -55,6 +62,10 @@
   font-weight: 600;
   font-size: rem(20px);
   color: $primary-color;
+}
+
+.sound-heading::first-letter {
+  text-transform: capitalize;
 }
 
 .sound-image {
@@ -68,17 +79,21 @@
 
 .sound-title {
   width: rem(220px);
-  font-size: rem(13px);
-  font-weight: 300;
+  font-size: rem(16px);
+  font-weight: 600;
+
+  &::first-letter {
+    text-transform: capitalize;
+  }
 }
 
 .play-icon {
   position: absolute;
   left: 50%;
-  top: 40%;
+  top: 30%;
   display: none;
   font-size: rem(50px);
-  transform: translate(-50%, -40%);
+  transform: translate(-50%, -30%);
 }
 
 .sound-container:hover {

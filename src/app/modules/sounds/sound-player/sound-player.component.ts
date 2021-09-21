@@ -8,20 +8,23 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { SoundEntity } from 'src/app/core/entities/sound.entity';
 import { SoundService } from 'src/app/core/services/sound.service';
-import { find, take } from 'rxjs/operators';
+import { find, take, takeUntil } from 'rxjs/operators';
 import { ShowHideStyleBuilder } from '@angular/flex-layout';
 import { SoundOptionsComponent } from '../sound-options/sound-options.component';
+import { fromEvent, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-sound-player',
   templateUrl: './sound-player.component.html',
   styleUrls: ['./sound-player.component.scss'],
 })
-export class SoundPlayerComponent implements OnInit {
+export class SoundPlayerComponent implements OnInit, OnDestroy {
   @ViewChild('options', { static: false }) options: SoundOptionsComponent;
   @ViewChild('audio', { static: true }) audio: HTMLAudioElement;
 
-  sound: SoundEntity | undefined;
+  sound: SoundEntity;
+  isLoading: boolean = false;
+  unsubscriber$ = new Subject();
 
   constructor(
     private route: ActivatedRoute,
@@ -30,22 +33,23 @@ export class SoundPlayerComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.params['id'] as string;
+    this.isLoading = true;
     this.soundService
       .fetchSoundById(id)
       .pipe(take(1))
-      .subscribe((categories) => {
-        console.log(categories, id);
-        const category = categories.find(
-          (category) =>
-            category.sounds.findIndex((sound) => sound.id == id) > -1
-        );
-        this.sound = category?.sounds.find((sound) => sound.id == id);
-        console.log(category);
+      .subscribe((sound) => {
+        this.sound = sound;
+        this.isLoading = false;
       });
   }
 
   private stopAudio() {
     this.audio.pause();
     this.audio.currentTime = 0;
+  }
+
+  ngOnDestroy() {
+    this.unsubscriber$.next();
+    this.unsubscriber$.complete();
   }
 }
