@@ -8,6 +8,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RegisterComponent } from './register/register.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { CommonModule } from '@angular/common';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [LoginComponent, AuthInputComponent, RegisterComponent],
@@ -16,8 +18,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     FlexLayoutModule,
     ReactiveFormsModule,
     FormsModule,
+    CommonModule,
     MatInputModule,
     MatIconModule,
+    MatProgressSpinnerModule,
     MatDialogModule,
     MatButtonModule,
   ],

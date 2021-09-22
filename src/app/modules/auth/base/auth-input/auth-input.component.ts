@@ -37,6 +37,7 @@ export class AuthInputComponent implements ControlValueAccessor {
   @Input() icon: string;
   @Input() placeholder: string;
   @Input() type: string;
+  @Input() error: string = '';
   @Output() focus: EventEmitter<any> = new EventEmitter<any>();
 
   private _value: string | number = '';

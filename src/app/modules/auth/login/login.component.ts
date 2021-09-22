@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
   registerForm: FormGroup;
   isLogin: boolean = false;
   isRegister: boolean = false;
+  loginErrorMessage: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -94,6 +95,8 @@ export class LoginComponent implements OnInit {
           },
           ({ error }) => {
             this.toasterService.showMessage('error', error.message);
+            this.loginErrorMessage = error.message;
+            console.log(this.loginErrorMessage);
             this.isLogin = false;
           }
         );

@@ -12,21 +12,24 @@
             formControlName="username"
             placeholder="Username"
             icon="person"
+            [error]="loginErrorMessage"
           ></app-auth-input>
           <app-auth-input
             type="password"
             formControlName="password"
             placeholder="Password"
             icon="lock"
+            [error]="loginErrorMessage"
           ></app-auth-input>
           <button
             type="submit"
             mat-raised-button
             color="primary"
             class="login-button"
-            [disabled]="isLogin"
+            [disabled]="!loginForm.valid"
           >
-            Login
+            <mat-spinner [diameter]="20" *ngIf="isLogin"></mat-spinner>
+            <span>Login</span>
           </button>
         </form>
         <form [formGroup]="registerForm" (ngSubmit)="onRegister()" fxFlex="50">
@@ -53,9 +56,10 @@
             mat-raised-button
             color="primary"
             class="login-button"
-            [disabled]="isRegister"
+            [disabled]="!registerForm.valid"
           >
-            Register
+            <mat-spinner [diameter]="20" *ngIf="isRegister"></mat-spinner>
+            <span>Register</span>
           </button>
         </form>
       </div>
