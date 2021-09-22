@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { from, Observable, of } from 'rxjs';
 import { CategoryEntity } from '../entities/category.entity';
 import { SoundEntity } from '../entities/sound.entity';
 import { filter, map, tap } from 'rxjs/operators';
@@ -26,7 +26,7 @@ export class SoundService {
 
   getSoundConfiguration(id: string): Observable<ConfigurationEntity> {
     const authToken = localStorage.getItem('bsound_token');
-
+    if (!authToken) return of(null);
     const headers = new HttpHeaders({
       Authorization: `Bearer ${authToken}`,
     });
