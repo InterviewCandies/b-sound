@@ -1,4 +1,5 @@
 import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTooltip } from '@angular/material/tooltip';
 import { interval } from 'rxjs';
 import { debounceTime, take } from 'rxjs/operators';
@@ -9,6 +10,8 @@ import {
 } from 'src/app/core/entities/configuration.entity';
 import { SoundService } from 'src/app/core/services/sound.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
+import utils from 'src/app/utils';
+import { LoginComponent } from '../../auth/login/login.component';
 import { AudioRecurence } from './types';
 
 const MAXIMUM_TIMER = 60;
@@ -43,6 +46,7 @@ export class SoundOptionsComponent implements OnInit, OnDestroy {
   audios: AudioRecurence[] = [];
 
   constructor(
+    private dialog: MatDialog,
     private soundService: SoundService,
     private toasterService: ToasterService
   ) {}
@@ -96,6 +100,12 @@ export class SoundOptionsComponent implements OnInit, OnDestroy {
   }
 
   onSaveConfiguration() {
+    if (!utils.isAuthenticated()) {
+      const dialogRef = this.dialog.open(LoginComponent);
+      dialogRef.afterClosed().subscribe((result) => console.log(result));
+      return;
+    }
+
     this.isSavingConfiguration = true;
 
     const getSoundConfigs = () => {

@@ -5,6 +5,9 @@ class Utils {
   convertToMs(minutes: number): number {
     return minutes * 60 * 60;
   }
+  isAuthenticated(): boolean {
+    return !!localStorage.getItem('bsound_token');
+  }
 }
 
 export default new Utils();
