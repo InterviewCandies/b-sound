@@ -11,7 +11,14 @@ import { SoundService } from 'src/app/core/services/sound.service';
 import { find, take, takeUntil } from 'rxjs/operators';
 import { ShowHideStyleBuilder } from '@angular/flex-layout';
 import { SoundOptionsComponent } from '../sound-options/sound-options.component';
-import { fromEvent, Subject } from 'rxjs';
+import { combineLatest, fromEvent, Subject } from 'rxjs';
+import { ConfigurationEntity } from 'src/app/core/entities/configuration.entity';
+import { AudioRecurence } from '../sound-options/types';
+import utils from 'src/app/utils';
+import { ToasterService } from 'src/app/core/services/toaster.service';
+
+const BASE_SRC = '../../../../assets/audios/';
+const BASE_TYPE = '.mp3';
 
 @Component({
   selector: 'app-sound-player',
@@ -22,14 +29,17 @@ export class SoundPlayerComponent implements OnInit, OnDestroy {
   @ViewChild('options', { static: false }) options: SoundOptionsComponent;
   @ViewChild('audio', { static: true }) audio: HTMLAudioElement;
 
-  sound: SoundEntity;
+  sound: SoundEntity = null;
   isLoading: boolean = false;
+  isLoop: boolean = false;
   unsubscriber$ = new Subject();
   soundId: string = '';
+  customAudios: AudioRecurence[] = [];
 
   constructor(
     private route: ActivatedRoute,
-    private soundService: SoundService
+    private soundService: SoundService,
+    private toasterService: ToasterService
   ) {}
 
   ngOnInit(): void {
@@ -37,23 +47,45 @@ export class SoundPlayerComponent implements OnInit, OnDestroy {
     this.soundId = id;
 
     this.isLoading = true;
-    this.soundService
-      .fetchSoundById(id)
-      .pipe(take(1))
-      .subscribe((sound) => {
-        this.sound = sound;
-        this.isLoading = false;
-      });
 
-    this.soundService
-      .getSoundConfiguration(id)
+    combineLatest(
+      this.soundService.fetchSoundById(id),
+      this.soundService.getSoundConfiguration(id)
+    )
       .pipe(take(1))
-      .subscribe((sound) => {
-        console.log(sound);
-      });
+      .subscribe(
+        ([sound, config]) => {
+          this.sound = sound;
+          if (config) {
+            const { loop, time, ...sounds } = config;
+            this.isLoop = loop;
+            this.getCustomSoundConfigs(sounds);
+          }
+          this.isLoading = false;
+        },
+        ({ error }) => {
+          this.toasterService.showMessage('error', error.message);
+          this.isLoading = false;
+        }
+      );
   }
 
-  private convertToSoundOptions() {}
+  private getCustomSoundConfigs(sounds: object) {
+    for (const [name, time] of Object.entries(sounds)) {
+      if (typeof time === 'number' && time) {
+        const newAudio = new Audio();
+        newAudio.src = BASE_SRC + name + BASE_TYPE;
+        newAudio.load();
+        this.customAudios.push({
+          audio: newAudio,
+          interval: setInterval(() => {
+            newAudio.play();
+          }, utils.convertToMs(time)),
+          timer: time,
+        });
+      }
+    }
+  }
 
   private stopAudio() {
     this.audio.pause();

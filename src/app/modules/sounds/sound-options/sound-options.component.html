@@ -16,7 +16,7 @@
   </app-option-button>
   <app-option-button
     [disabled]="disabled"
-    [tooltipMessage]="isRepeating ? 'No-repeat' : 'Repeat'"
+    [tooltipMessage]="isRepeating ? 'No repeat' : 'Repeat'"
     [color]="isRepeating ? 'primary' : 'default'"
     (onClick)="onRepeat()"
     icon="repeat"
@@ -40,7 +40,7 @@
   </app-option-button>
   <app-option-button
     [disabled]="disabled"
-    [tooltipMessage]="getSoundTooltip('Birds sing', 'birds')"
+    [tooltipMessage]="getSoundTooltip('Birds sing', 'bird')"
     [color]="getTimer('bird') ? 'primary' : ''"
     (onClick)="onClickSound('../../../../assets/audios/bird.mp3')"
     icon="music_note"

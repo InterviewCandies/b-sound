@@ -24,7 +24,7 @@ export class SoundService {
       .pipe(map((response) => response.data));
   }
 
-  getSoundConfiguration(id: string): Observable<any> {
+  getSoundConfiguration(id: string): Observable<ConfigurationEntity> {
     const authToken = localStorage.getItem('bsound_token');
 
     const headers = new HttpHeaders({
@@ -36,9 +36,10 @@ export class SoundService {
         headers: headers,
       })
       .pipe(
-        tap((response) => console.log(response)),
-        filter((r) => r && r.success),
-        map((response) => response.data)
+        map((response) => {
+          if (response.success) return response.data;
+          return null;
+        })
       );
   }
 

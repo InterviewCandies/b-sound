@@ -23,6 +23,20 @@ const DIFF_TIME = 5;
 export class SoundOptionsComponent implements OnInit, OnDestroy {
   @Input() disabled: boolean = false;
   @Input() id: string = '';
+
+  @Input()
+  set audioConfigs(audios: AudioRecurence[]) {
+    this.audios = audios;
+  }
+
+  @Input()
+  set loop(value: boolean) {
+    this.isRepeating = value;
+  }
+
+  @Input()
+  set timer(value: number) {}
+
   isRepeating: boolean = false;
   endTime: number = 0;
   isSavingConfiguration: boolean = false;
@@ -123,7 +137,7 @@ export class SoundOptionsComponent implements OnInit, OnDestroy {
     const selectedAudio = this.audios.find((item) =>
       this.getSoundName(item.audio.src)?.includes(name)
     );
-    if (selectedAudio) return selectedAudio.timer;
+    if (selectedAudio) return selectedAudio?.timer;
     return 0;
   }
 
