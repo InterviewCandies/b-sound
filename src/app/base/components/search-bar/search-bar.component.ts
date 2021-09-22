@@ -15,24 +15,11 @@ export class SearchBarComponent implements OnInit, OnDestroy {
 
   constructor(private soundService: SoundService) {}
 
-  ngOnInit(): void {
-    this.searchTerm$
-      .pipe(
-        debounceTime(400),
-        distinctUntilChanged(),
-        switchMap((term: string) => this.soundService.searchSoundByName(term))
-      )
-      .subscribe((sounds) => {
-        this.sounds = sounds;
-      });
-  }
+  ngOnInit(): void {}
 
   onKeyUp(event: Event) {
     this.searchTerm$.next((event.target as HTMLInputElement).value);
   }
 
-  ngOnDestroy() {
-    this.searchTerm$.next();
-    this.searchTerm$.complete();
-  }
+  ngOnDestroy() {}
 }

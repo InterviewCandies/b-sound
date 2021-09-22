@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CategoryEntity } from '../entities/category.entity';
@@ -17,7 +17,18 @@ export class SoundService {
       .pipe(map((response) => response.data));
   }
 
-  searchSoundByName(term: string): Observable<any> {
-    return this.http.post('', { name: term });
+  searchSoundByName(term: string): Observable<SoundEntity[]> {
+    return this.http
+      .get<ApiResponse<SoundEntity[]>>(BASE_URL + '/sound/search?str=' + term)
+      .pipe(map((response) => response.data));
+  }
+
+  getSoundConfiguration(id: string): Observable<any> {
+    const headers = new HttpHeaders();
+    headers.set('Authorization', localStorage.getItem('bsound_token'));
+
+    return this.http
+      .get<ApiResponse<any>>(BASE_URL + '/configuration/' + id, { headers })
+      .pipe(map((response) => response.data));
   }
 }

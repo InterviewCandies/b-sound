@@ -11,11 +11,11 @@
       <mat-icon>list</mat-icon>
     </button>
     <button
-      [matTooltip]="isAuthenticated ? 'Log out' : ''"
+      [matTooltip]="isAuthenticated ? 'Log out' : 'Log in'"
       mat-mini-fab
       (click)="isAuthenticated ? openProfile() : openAuthentication()"
     >
-      <mat-icon>person</mat-icon>
+      <mat-icon>{{ isAuthenticated ? "logout" : "person" }}</mat-icon>
     </button>
   </div>
 </div>

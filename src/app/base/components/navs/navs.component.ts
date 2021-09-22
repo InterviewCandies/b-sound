@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ToasterService } from 'src/app/core/services/toaster.service';
 import { LoginComponent } from 'src/app/modules/auth/login/login.component';
 
 @Component({
@@ -9,7 +10,11 @@ import { LoginComponent } from 'src/app/modules/auth/login/login.component';
   styleUrls: ['./navs.component.scss'],
 })
 export class NavsComponent implements OnInit {
-  constructor(private dialog: MatDialog, private router: Router) {}
+  constructor(
+    private dialog: MatDialog,
+    private router: Router,
+    private toaster: ToasterService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -24,6 +29,7 @@ export class NavsComponent implements OnInit {
   }
 
   openProfile() {
+    this.toaster.showMessage('success', 'You have logged out');
     localStorage.removeItem('bsound_token');
   }
 

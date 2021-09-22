@@ -5,10 +5,19 @@
 .wrapper {
   @include padding(all, 2);
 
-  height: calc(100vh - 100px);
-
-  app-loader {
+  .loader {
+    color: #bdbdbd;
     flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 300px);
+  }
+
+  .not-found-text {
+    font-size: 12pt;
+    text-transform: uppercase;
+    font-family: "Arame-Regular", "Arial", sans-serif;
   }
 
   .search-and-filter {

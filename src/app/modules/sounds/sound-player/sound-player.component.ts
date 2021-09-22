@@ -41,6 +41,13 @@ export class SoundPlayerComponent implements OnInit, OnDestroy {
         this.sound = sound;
         this.isLoading = false;
       });
+
+    this.soundService
+      .getSoundConfiguration(id)
+      .pipe(take(1))
+      .subscribe((sound) => {
+        console.log(sound);
+      });
   }
 
   private stopAudio() {

@@ -58,7 +58,6 @@ export class LoginComponent implements OnInit {
   };
 
   onRegister() {
-    console.log(this.registerForm.value);
     if (this.registerForm.valid) {
       const username = this.registerForm.get('username').value;
       const password = this.registerForm.get('password').value;
@@ -68,7 +67,7 @@ export class LoginComponent implements OnInit {
         .pipe(take(1))
         .subscribe(
           (token) => {
-            this.onSuccess(token);
+            this.onSuccess(token, 'Register');
             this.isRegister = false;
           },
           ({ error }) => {
@@ -91,7 +90,7 @@ export class LoginComponent implements OnInit {
         .subscribe(
           (token) => {
             this.isLogin = false;
-            this.onSuccess(token);
+            this.onSuccess(token, 'Login');
           },
           ({ error }) => {
             this.toasterService.showMessage('error', error.message);
@@ -101,8 +100,9 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  onSuccess(token: string) {
+  onSuccess(token: string, action: string = '') {
     localStorage.setItem('bsound_token', token);
+    this.toasterService.showMessage('success', action + ' successfully!');
     this.dialogRef.close();
   }
 }

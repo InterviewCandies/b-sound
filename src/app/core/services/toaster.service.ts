@@ -5,7 +5,7 @@ import { StatusType } from '../entities/status.entity';
 
 @Injectable()
 export class ToasterService {
-  durationInSeconds = 5;
+  private durationInSeconds = 5;
 
   constructor(private snackBar: MatSnackBar) {}
 

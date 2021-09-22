@@ -4,4 +4,5 @@ export interface SoundEntity {
   _id: string;
   audio: string;
   tags: string[];
+  category?: string;
 }

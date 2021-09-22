@@ -12,6 +12,7 @@
       mat-icon-button
       matTooltip="Filter"
       (click)="onShowFilter()"
+      *ngIf="false"
       [color]="isFilterShowing ? 'primary' : ''"
     >
       <mat-icon>view_list</mat-icon>
@@ -41,7 +42,15 @@
     [loading]="isLoading"
     message="Loading sounds"
     type="dots"
+    *ngIf="isLoading"
+    class="loader"
   ></app-loader>
+  <div class="loader" *ngIf="!categories.length">
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="8px">
+      <mat-icon>dangerous</mat-icon>
+      <p class="not-found-text">Sorry! No sound found</p>
+    </div>
+  </div>
   <div fxLayout="column" fxLayoutGap="32px" *ngIf="categories.length">
     <div *ngFor="let category of categories">
       <p class="sound-heading">{{ displayCategoryName(category.name) }}</p>

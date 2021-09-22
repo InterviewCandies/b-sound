@@ -22,3 +22,8 @@ body {
   @include padding(left, 2);
   @include padding(right, 2);
 }
+
+.mat-snack-bar-container {
+  background-color: #000;
+  @include padding(top, 1);
+}
