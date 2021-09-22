@@ -3,9 +3,10 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CategoryEntity } from '../entities/category.entity';
 import { SoundEntity } from '../entities/sound.entity';
-import { filter, map } from 'rxjs/operators';
+import { filter, map, tap } from 'rxjs/operators';
 import { ApiResponse } from '../response/api.response';
 import { BASE_URL } from '.';
+import { ConfigurationEntity } from '../entities/configuration.entity';
 
 @Injectable()
 export class SoundService {
@@ -24,11 +25,39 @@ export class SoundService {
   }
 
   getSoundConfiguration(id: string): Observable<any> {
-    const headers = new HttpHeaders();
-    headers.set('Authorization', localStorage.getItem('bsound_token'));
+    const authToken = localStorage.getItem('bsound_token');
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${authToken}`,
+    });
 
     return this.http
-      .get<ApiResponse<any>>(BASE_URL + '/configuration/' + id, { headers })
-      .pipe(map((response) => response.data));
+      .get<ApiResponse<any>>(BASE_URL + '/configuration/' + id, {
+        headers: headers,
+      })
+      .pipe(
+        tap((response) => console.log(response)),
+        filter((r) => r && r.success),
+        map((response) => response.data)
+      );
+  }
+
+  saveSoundConfiguration(
+    id: string,
+    config: ConfigurationEntity
+  ): Observable<any> {
+    const authToken = localStorage.getItem('bsound_token');
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${authToken}`,
+    });
+
+    return this.http.post<ApiResponse<any>>(
+      BASE_URL + '/configuration/' + id,
+      config,
+      {
+        headers: headers,
+      }
+    );
   }
 }

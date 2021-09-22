@@ -29,3 +29,11 @@ app-loader {
     bottom: rem(24px);
   }
 }
+
+audio {
+  width: rem(800px);
+}
+
+audio::-webkit-media-controls-enclosure {
+  background-color: #fff;
+}

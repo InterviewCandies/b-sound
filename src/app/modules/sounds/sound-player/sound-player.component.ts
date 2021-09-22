@@ -25,6 +25,7 @@ export class SoundPlayerComponent implements OnInit, OnDestroy {
   sound: SoundEntity;
   isLoading: boolean = false;
   unsubscriber$ = new Subject();
+  soundId: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -33,6 +34,8 @@ export class SoundPlayerComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     const id = this.route.snapshot.params['id'] as string;
+    this.soundId = id;
+
     this.isLoading = true;
     this.soundService
       .fetchSoundById(id)
@@ -49,6 +52,8 @@ export class SoundPlayerComponent implements OnInit, OnDestroy {
         console.log(sound);
       });
   }
+
+  private convertToSoundOptions() {}
 
   private stopAudio() {
     this.audio.pause();

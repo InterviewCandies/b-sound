@@ -2,6 +2,13 @@ import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatTooltip } from '@angular/material/tooltip';
 import { interval } from 'rxjs';
 import { debounceTime, take } from 'rxjs/operators';
+import {
+  ConfigurationEntity,
+  SoundType,
+  SUPPORT_SOUNDS,
+} from 'src/app/core/entities/configuration.entity';
+import { SoundService } from 'src/app/core/services/sound.service';
+import { ToasterService } from 'src/app/core/services/toaster.service';
 import { AudioRecurence } from './types';
 
 const MAXIMUM_TIMER = 60;
@@ -15,11 +22,20 @@ const DIFF_TIME = 5;
 })
 export class SoundOptionsComponent implements OnInit, OnDestroy {
   @Input() disabled: boolean = false;
+  @Input() id: string = '';
   isRepeating: boolean = false;
   endTime: number = 0;
+  isSavingConfiguration: boolean = false;
   audios: AudioRecurence[] = [];
 
-  constructor() {}
+  constructor(
+    private soundService: SoundService,
+    private toasterService: ToasterService
+  ) {}
+
+  get isSavable(): boolean {
+    return this.isRepeating || this.audios.length > 0;
+  }
 
   ngOnInit(): void {}
 
@@ -65,6 +81,44 @@ export class SoundOptionsComponent implements OnInit, OnDestroy {
     } else this.endTime = 0;
   }
 
+  onSaveConfiguration() {
+    this.isSavingConfiguration = true;
+
+    const getSoundConfigs = () => {
+      const obj: Record<string, number> = {};
+      for (const sound of SUPPORT_SOUNDS)
+        obj[sound] = this.getCurrentSoundConfig(sound);
+      return obj;
+    };
+
+    const config = {
+      time: 0,
+      loop: this.isRepeating,
+      ...getSoundConfigs(),
+    } as ConfigurationEntity;
+
+    this.soundService
+      .saveSoundConfiguration(this.id, config)
+      .pipe(take(1))
+      .subscribe(
+        (response) => {
+          if (response.success) {
+            this.toasterService.showMessage(
+              'success',
+              'Configuration for this sound has been saved !'
+            );
+          } else {
+            this.toasterService.showMessage('error', response.message);
+          }
+          this.isSavingConfiguration = false;
+        },
+        ({ error }) => {
+          this.toasterService.showMessage('error', error.message);
+          this.isSavingConfiguration = false;
+        }
+      );
+  }
+
   getTimer(name: string): number {
     const selectedAudio = this.audios.find((item) =>
       this.getSoundName(item.audio.src)?.includes(name)
@@ -94,5 +148,13 @@ export class SoundOptionsComponent implements OnInit, OnDestroy {
 
   private convertToMs(minutes: number): number {
     return minutes * 60 * 60;
+  }
+
+  private getCurrentSoundConfig(sound: string): number {
+    const audio = this.audios.find(
+      (audio) => this.getSoundName(audio.audio.src) === sound
+    );
+    if (audio) return audio.timer;
+    return 0;
   }
 }

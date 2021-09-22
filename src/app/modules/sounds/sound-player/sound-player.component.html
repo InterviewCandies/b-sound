@@ -14,11 +14,17 @@
   <div class="overlay" fxLayout="column" fxLayoutAlign="center center">
     <img [src]="sound.image" class="circle-image" />
     <h3>{{ sound.name }}</h3>
-    <audio controls [loop]="options.isRepeating" #audio>
+    <audio
+      controls
+      controlsList="nodownload"
+      [loop]="options.isRepeating"
+      #audio
+    >
       <source [src]="sound.audio" />
     </audio>
     <app-sound-options
       class="options"
+      [id]="soundId"
       #options
       [disabled]="false"
     ></app-sound-options>

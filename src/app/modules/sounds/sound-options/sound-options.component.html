@@ -1,5 +1,12 @@
 <div fxLayout="column" fxLayoutGap="16px" class="wrapper">
   <app-option-button
+    [disabled]="!isSavable || isSavingConfiguration"
+    tooltipMessage="Save configuration"
+    (onClick)="onSaveConfiguration()"
+    icon="save"
+  >
+  </app-option-button>
+  <app-option-button
     [disabled]="disabled"
     [tooltipMessage]="endTime ? endTime + ' minutes' : 'Timer'"
     [color]="endTime ? 'primary' : 'default'"
@@ -31,13 +38,6 @@
     icon="water_drop"
   >
   </app-option-button>
-  <button
-    mat-icon-button
-    (click)="onClickSound('../../../../assets/audios/bird.mp3')"
-    [color]="getTimer('bird') ? 'primary' : ''"
-  >
-    <img src="../../../../assets/images/bird-icon.svg" class="icon" />
-  </button>
   <app-option-button
     [disabled]="disabled"
     [tooltipMessage]="getSoundTooltip('Birds sing', 'birds')"
