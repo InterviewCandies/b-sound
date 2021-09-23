@@ -1,8 +1,10 @@
 import {
   AfterViewInit,
   Component,
+  OnChanges,
   OnDestroy,
   OnInit,
+  SimpleChange,
   ViewChild,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -75,7 +77,6 @@ export class SoundPlayerComponent implements OnInit, OnDestroy {
       if (typeof time === 'number' && time) {
         const newAudio = new Audio();
         newAudio.src = BASE_SRC + name + BASE_TYPE;
-        newAudio.load();
         this.customAudios.push({
           audio: newAudio,
           interval: setInterval(() => {

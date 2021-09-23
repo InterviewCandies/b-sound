@@ -178,6 +178,11 @@ export class SoundOptionsComponent implements OnInit, OnDestroy {
     const audio = this.audios.find(
       (audio) => this.getSoundName(audio.audio.src) === sound
     );
+    console.log(
+      this.audios.map((audio) => audio.audio.src),
+      sound,
+      audio
+    );
     if (audio) return audio.timer;
     return 0;
   }
