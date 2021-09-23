@@ -21,26 +21,6 @@
       <mat-icon>view_list</mat-icon>
     </button>
   </div>
-  <div fxLayout="row" fxLayoutGap="16px" *ngIf="isFilterShowing">
-    <mat-form-field appearance="fill" class="tags-filter">
-      <mat-label>Tags</mat-label>
-      <mat-select [formControl]="toppings" multiple>
-        <mat-select-trigger>
-          {{ toppings.value ? toppings.value[0] : "" }}
-          <span
-            *ngIf="toppings.value?.length > 1"
-            class="example-additional-selection"
-          >
-            (+{{ toppings.value.length - 1 }}
-            {{ toppings.value?.length === 2 ? "other" : "others" }})
-          </span>
-        </mat-select-trigger>
-        <mat-option *ngFor="let topping of toppingList" [value]="topping">{{
-          topping
-        }}</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
   <app-loader
     [loading]="isLoading"
     message="Loading sounds"
@@ -77,12 +57,8 @@
           *ngFor="let item of category.sounds"
           class="sound-container carousel-cell"
         >
-          <div class="sound-screen">
-            <img
-              class="sound-image"
-              [src]="item.image"
-              (click)="onSelectSound(item)"
-            />
+          <div class="sound-screen" (click)="onSelectSound(item)">
+            <img class="sound-image" [src]="item.image" />
             <mat-icon class="play-icon">play_circle</mat-icon>
           </div>
           <span class="sound-title">{{ item.name }}</span>
