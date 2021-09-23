@@ -11,6 +11,9 @@
   *ngIf="sound"
   [ngStyle]="{ 'background-image': 'url(' + sound.image + ')' }"
 >
+  <button mat-mini-fab class="back-button" (click)="location.back()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
   <div class="overlay" fxLayout="column" fxLayoutAlign="center center">
     <img [src]="sound.image" class="circle-image" />
     <h3>{{ sound.name }}</h3>

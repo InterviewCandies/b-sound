@@ -1,6 +1,7 @@
 <div class="input-wrapper">
-  <mat-form-field appearance="fill" [ngClass]="error ? 'error' : ''">
-    <mat-icon matPrefix>{{ icon }}</mat-icon>
+  <mat-form-field appearance="standard" [ngClass]="error ? 'error' : ''">
+    <mat-icon matSuffix>{{ icon }}</mat-icon>
+    <mat-label>{{ label }}</mat-label>
     <input
       matInput
       [type]="type"

@@ -104,14 +104,16 @@
   text-transform: capitalize;
 }
 
+.sound-screen {
+  position: relative;
+}
+
 .sound-image {
   width: 100%;
   object-fit: fill !important;
   height: rem(180px) !important;
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
 .sound-title {
@@ -127,13 +129,13 @@
 .play-icon {
   position: absolute;
   left: 50%;
-  top: 30%;
+  top: 50%;
   display: none;
   font-size: rem(50px);
-  transform: translate(-50%, -30%);
+  transform: translate(-50%, -50%);
 }
 
-.sound-container:hover {
+.sound-screen:hover {
   .play-icon {
     display: block;
   }

@@ -5,6 +5,12 @@ app-loader {
   height: 100vh;
 }
 
+.back-button {
+  position: fixed;
+  top: rem(20px);
+  left: rem(20px);
+}
+
 .background {
   width: 100vw;
   height: 100vh;

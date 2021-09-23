@@ -7,6 +7,7 @@ import {
   SimpleChange,
   ViewChild,
 } from '@angular/core';
+import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SoundEntity } from 'src/app/core/entities/sound.entity';
 import { SoundService } from 'src/app/core/services/sound.service';
@@ -41,7 +42,8 @@ export class SoundPlayerComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private soundService: SoundService,
-    private toasterService: ToasterService
+    private toasterService: ToasterService,
+    public location: Location
   ) {}
 
   ngOnInit(): void {

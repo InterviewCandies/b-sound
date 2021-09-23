@@ -14,6 +14,11 @@
   padding: 0;
   position: relative;
 
+  .login-svg {
+    width: rem(200px);
+    object-fit: contain;
+  }
+
   .close-button {
     position: absolute;
     color: #fff;
@@ -32,14 +37,12 @@
     left: rem(40px);
   }
 
-  @include margin(left, 10);
-  @include margin(right, 10);
+  @include margin(left, 5);
+  @include margin(right, 5);
   @include margin(top, 10);
   @include margin(bottom, 10);
 
-  background-image: url("../../../../assets//images/bg-login.jpg");
-  background-position: center;
-  background-size: cover;
+  background-color: #000;
 }
 
 .login-box {
@@ -49,7 +52,7 @@
 
   .heading {
     font-size: rem(14px);
-    color: #fff;
+    color: $primary-color;
     @include margin(bottom, 2);
   }
 

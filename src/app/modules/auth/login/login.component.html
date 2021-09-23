@@ -1,22 +1,25 @@
-<mat-dialog-content class="dialog-container">
+<div class="dialog-container">
   <button mat-icon-button class="close-button">
     <mat-icon mat-dialog-close>close</mat-icon>
   </button>
   <img src="../../../../assets/images/logo.png" alt="logo" class="logo" />
-  <div class="container">
+  <div fxLayout="row" fxLayoutGap="50px" fxLayoutAlign="none center">
+    <img src="../../../../assets/images/login.svg" class="login-svg" />
     <div class="login-box" fxLayout="column" fxLayoutAlign="center center">
       <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
         <p class="heading">Login in now to personalize your sound !</p>
         <app-auth-input
+          label="Username"
           formControlName="username"
-          placeholder="Username"
+          placeholder="Type here"
           icon="person"
           [error]="loginErrorMessage"
         ></app-auth-input>
         <app-auth-input
+          label="Password"
           type="password"
           formControlName="password"
-          placeholder="Password"
+          placeholder="Type here"
           icon="lock"
           [error]="loginErrorMessage"
         ></app-auth-input>
@@ -36,4 +39,4 @@
       </p>
     </div>
   </div>
-</mat-dialog-content>
+</div>

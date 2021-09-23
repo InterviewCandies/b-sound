@@ -24,6 +24,12 @@ export class SoundService {
       .pipe(map((response) => response.data));
   }
 
+  searchSoundByTag(tag: string): Observable<SoundEntity[]> {
+    return this.http
+      .get<ApiResponse<SoundEntity[]>>(BASE_URL + '/sound/search?tags=' + tag)
+      .pipe(map((response) => response.data));
+  }
+
   getAllConfiguration(): Observable<ConfigurationEntity[]> {
     const authToken = localStorage.getItem('bsound_token');
     const headers = new HttpHeaders({

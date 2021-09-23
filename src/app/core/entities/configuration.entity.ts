@@ -21,4 +21,6 @@ export interface ConfigurationEntity {
   waves: number;
   wind: number;
   sound?: SoundEntity;
+  createdAt?: string;
+  updatedAt?: string;
 }

@@ -57,29 +57,39 @@
   <div
     fxLayout="column"
     fxLayoutGap="32px"
-    *ngIf="categories.length"
+    *ngIf="categories.length && !isLoading"
     class="sounds"
   >
     <div *ngFor="let category of categories">
-      <p class="sound-heading">{{ displayCategoryName(category.name) }}</p>
+      <p class="sound-heading">
+        {{ displayCategoryName(category.name) }}
+      </p>
       <carousel
         [cellWidth]="300"
         [height]="300"
         [margin]="50"
         [arrowsOutside]="true"
+        style="z-index: 10"
       >
         <div
           fxLayout="column"
           fxLayoutGap="8px"
           *ngFor="let item of category.sounds"
           class="sound-container carousel-cell"
-          (click)="onSelectSound(item)"
         >
-          <img class="sound-image" [src]="item.image" />
-          <mat-icon class="play-icon">play_circle</mat-icon>
+          <div class="sound-screen">
+            <img
+              class="sound-image"
+              [src]="item.image"
+              (click)="onSelectSound(item)"
+            />
+            <mat-icon class="play-icon">play_circle</mat-icon>
+          </div>
           <span class="sound-title">{{ item.name }}</span>
           <mat-chip-list>
-            <mat-chip *ngFor="let tag of item.tags">{{ tag }}</mat-chip>
+            <mat-chip *ngFor="let tag of item.tags" (click)="onClickTag(tag)">{{
+              tag
+            }}</mat-chip>
           </mat-chip-list>
         </div>
       </carousel>

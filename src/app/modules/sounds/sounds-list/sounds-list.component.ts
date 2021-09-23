@@ -23,6 +23,7 @@ import { FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import utils from 'src/app/utils';
 import { SoundService } from 'src/app/core/services/sound.service';
+import { ToasterService } from 'src/app/core/services/toaster.service';
 
 @Component({
   selector: 'app-sounds-list',
@@ -51,7 +52,8 @@ export class SoundsListComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(
     private categoryService: CategoryService,
     private soundService: SoundService,
-    private router: Router
+    private router: Router,
+    private toasterService: ToasterService
   ) {}
 
   displayCategoryName(name: string) {
@@ -90,6 +92,23 @@ export class SoundsListComponent implements OnInit, OnDestroy, AfterViewInit {
   onScroll() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     this.scrollButt.nativeElement.addClass('show');
+  }
+
+  onClickTag(tag: string) {
+    this.isLoading = true;
+    this.soundService
+      .searchSoundByTag(tag)
+      .pipe(map((sounds) => this.groupSoundsByCategory(sounds)))
+      .subscribe(
+        (categories) => {
+          this.categories = categories;
+          this.isLoading = false;
+        },
+        ({ error }) => {
+          this.isLoading = true;
+          this.toasterService.showMessage('error', error.message);
+        }
+      );
   }
 
   onShowFilter() {

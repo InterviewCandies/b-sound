@@ -1,20 +1,29 @@
 @import "/src/styles/rem";
+@import "/src/styles/color";
 
 .input-wrapper {
   width: 100%;
-
   mat-form-field {
     width: 100%;
+    color: #fff !important;
 
     .mat-form-field-flex {
-      align-items: center;
-      gap: 1rem;
-      padding-top: 0;
-      background-color: rgba($color: #fff, $alpha: 0.45);
-
+      color: #fff;
       input {
         font-size: rem(18px);
       }
+    }
+
+    .mat-form-field-underline {
+      background-color: #fff;
+    }
+
+    input::placeholder {
+      color: $placeholder-color;
+    }
+
+    .mat-form-field-label {
+      color: #fff;
     }
   }
 }
