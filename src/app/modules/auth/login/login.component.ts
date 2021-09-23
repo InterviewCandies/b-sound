@@ -60,7 +60,6 @@ export class LoginComponent implements OnInit {
           ({ error }) => {
             this.toasterService.showMessage('error', error.message);
             this.loginErrorMessage = error.message;
-            console.log(this.loginErrorMessage);
             this.isLogin = false;
           }
         );

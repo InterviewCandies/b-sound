@@ -176,13 +176,9 @@ export class SoundOptionsComponent implements OnInit, OnDestroy {
 
   private getCurrentSoundConfig(sound: string): number {
     const audio = this.audios.find(
-      (audio) => this.getSoundName(audio.audio.src) === sound
+      (audio) => this.getSoundName(audio.audio.src) === sound + '.mp3'
     );
-    console.log(
-      this.audios.map((audio) => audio.audio.src),
-      sound,
-      audio
-    );
+
     if (audio) return audio.timer;
     return 0;
   }

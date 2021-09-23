@@ -69,10 +69,6 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  onSubmit() {
-    console.log(this.registerForm.value);
-  }
-
   onSuccess(token: string, action: string = '') {
     this.toasterService.showMessage('success', action + ' successfully!');
     this.dialogRef.close();
