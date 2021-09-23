@@ -22,6 +22,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OptionButtonComponent } from './sound-options/option-button/option-button.component';
 import { SoundProducerComponent } from './sound-producer/sound-producer.component';
 import { SoundUploadComponent } from './sound-producer/sound-upload/sound-upload.component';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { SoundUploadComponent } from './sound-producer/sound-upload/sound-upload
     MatTooltipModule,
     FlexLayoutModule,
     MatFormFieldModule,
+    IvyCarouselModule,
     MatSelectModule,
     FormsModule,
     ReactiveFormsModule,

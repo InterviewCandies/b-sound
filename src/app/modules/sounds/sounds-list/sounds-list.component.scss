@@ -5,12 +5,10 @@
 .wrapper {
   @include padding(all, 2);
 
-  .show {
-    opacity: 1;
-  }
-
-  .hide {
-    opacity: 0;
+  box-sizing: border-box;
+  .sounds {
+    width: 90%;
+    @include padding(top, 2);
   }
 
   .scrollButton {
@@ -92,6 +90,7 @@
 
 .sound-container {
   position: relative;
+  justify-content: center;
 }
 
 .sound-heading {
@@ -106,7 +105,8 @@
 
 .sound-image {
   width: 100%;
-  height: rem(180px);
+  object-fit: fill !important;
+  height: rem(180px) !important;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,

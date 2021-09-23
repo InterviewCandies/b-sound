@@ -54,15 +54,25 @@
       <p class="not-found-text">Sorry ! No sound found</p>
     </div>
   </div>
-  <div fxLayout="column" fxLayoutGap="32px" *ngIf="categories.length">
+  <div
+    fxLayout="column"
+    fxLayoutGap="32px"
+    *ngIf="categories.length"
+    class="sounds"
+  >
     <div *ngFor="let category of categories">
       <p class="sound-heading">{{ displayCategoryName(category.name) }}</p>
-      <div class="sound-list">
+      <carousel
+        [cellWidth]="300"
+        [height]="300"
+        [margin]="50"
+        [arrowsOutside]="true"
+      >
         <div
           fxLayout="column"
           fxLayoutGap="8px"
           *ngFor="let item of category.sounds"
-          class="sound-container"
+          class="sound-container carousel-cell"
           (click)="onSelectSound(item)"
         >
           <img class="sound-image" [src]="item.image" />
@@ -72,7 +82,7 @@
             <mat-chip *ngFor="let tag of item.tags">{{ tag }}</mat-chip>
           </mat-chip-list>
         </div>
-      </div>
+      </carousel>
     </div>
   </div>
 </div>
