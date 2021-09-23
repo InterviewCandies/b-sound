@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <p class="heading">Your configurations</p>
+  <p class="heading">Your configuration</p>
   <app-loader
     [loading]="isLoading"
     message="Loading configurarions"
@@ -29,7 +29,7 @@
           {{ config.sound.name }}
         </p>
         <div class="action">
-          <button mat-icon-button>
+          <button mat-icon-button (click)="onCopyLink()">
             <mat-icon>content_copy</mat-icon>
           </button>
         </div>

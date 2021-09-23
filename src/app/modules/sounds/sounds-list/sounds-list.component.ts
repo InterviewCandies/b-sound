@@ -1,6 +1,7 @@
 import {
   AfterViewInit,
   Component,
+  ElementRef,
   OnDestroy,
   OnInit,
   ViewChild,
@@ -29,6 +30,7 @@ import { SoundService } from 'src/app/core/services/sound.service';
   styleUrls: ['./sounds-list.component.scss'],
 })
 export class SoundsListComponent implements OnInit, OnDestroy, AfterViewInit {
+  @ViewChild('scroll', { static: true }) scrollButt: ElementRef;
   @ViewChild('search', { static: false }) search: SearchBarComponent;
   categories: CategoryEntity[] = [];
   isFilterShowing: boolean = false;
@@ -83,6 +85,11 @@ export class SoundsListComponent implements OnInit, OnDestroy, AfterViewInit {
 
   onSelectSound(sound: SoundEntity) {
     this.router.navigateByUrl('/sounds/' + sound._id, { state: { ...sound } });
+  }
+
+  onScroll() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    this.scrollButt.nativeElement.addClass('show');
   }
 
   onShowFilter() {
