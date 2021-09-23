@@ -24,6 +24,24 @@ export class SoundService {
       .pipe(map((response) => response.data));
   }
 
+  getAllConfiguration(): Observable<ConfigurationEntity[]> {
+    const authToken = localStorage.getItem('bsound_token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${authToken}`,
+    });
+
+    return this.http
+      .get<ApiResponse<any>>(BASE_URL + '/configuration', {
+        headers: headers,
+      })
+      .pipe(
+        map((response) => {
+          if (response.success) return response.data;
+          return null;
+        })
+      );
+  }
+
   getSoundConfiguration(id: string): Observable<ConfigurationEntity> {
     const authToken = localStorage.getItem('bsound_token');
     if (!authToken) return of(null);

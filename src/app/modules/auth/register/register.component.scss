@@ -33,7 +33,7 @@
 
   @include margin(left, 10);
   @include margin(right, 10);
-  @include margin(top, 12);
+  @include margin(top, 10);
   @include margin(bottom, 10);
 
   background-image: url("../../../../assets//images/bg-login.jpg");
@@ -47,9 +47,9 @@
   height: 100%;
 
   .heading {
-    font-size: rem(24px);
-    font-weight: 600;
+    font-size: rem(14px);
     color: #fff;
+    @include margin(bottom, 2);
   }
 
   form {
@@ -90,7 +90,7 @@
 
 .sign-up-text {
   margin: 0;
-  font-size: rem(16px);
+  font-size: rem(14px);
   text-align: center;
   color: #fff;
   position: absolute;

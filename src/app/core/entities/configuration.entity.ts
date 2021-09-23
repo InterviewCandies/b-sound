@@ -1,3 +1,5 @@
+import { SoundEntity } from './sound.entity';
+
 export const SUPPORT_SOUNDS = [
   'bell',
   'bird',
@@ -18,4 +20,5 @@ export interface ConfigurationEntity {
   water: number;
   waves: number;
   wind: number;
+  sound?: SoundEntity;
 }

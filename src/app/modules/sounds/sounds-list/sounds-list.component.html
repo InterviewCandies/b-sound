@@ -45,10 +45,10 @@
     *ngIf="isLoading"
     class="loader"
   ></app-loader>
-  <div class="loader" *ngIf="!categories.length">
-    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="8px">
-      <mat-icon>dangerous</mat-icon>
-      <p class="not-found-text">Sorry! No sound found</p>
+  <div class="loader" *ngIf="!categories.length && !isLoading">
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="8px">
+      <mat-icon>search_off</mat-icon>
+      <p class="not-found-text">Sorry ! No sound found</p>
     </div>
   </div>
   <div fxLayout="column" fxLayoutGap="32px" *ngIf="categories.length">

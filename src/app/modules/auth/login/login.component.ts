@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
     }
   }
   openRegister() {
-    this.dialog.open(RegisterComponent);
+    this.dialog.open(RegisterComponent, { disableClose: true });
   }
   onSuccess(token: string, action: string = '') {
     localStorage.setItem('bsound_token', token);

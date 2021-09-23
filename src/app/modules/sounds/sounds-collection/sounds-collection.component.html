@@ -1,1 +1,39 @@
-<p>sounds-collection works!</p>
+<div class="wrapper">
+  <p class="heading">Your configurations</p>
+  <app-loader
+    [loading]="isLoading"
+    message="Loading configurarions"
+    type="dots"
+    *ngIf="isLoading"
+    class="loader"
+  ></app-loader>
+  <div class="loader" *ngIf="!configs.length && !isLoading">
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="8px">
+      <mat-icon>delete_outline</mat-icon>
+      <p class="not-found-text">You have no configuration</p>
+    </div>
+  </div>
+  <div class="sound-container">
+    <div class="sound-card" *ngFor="let config of configs">
+      <div class="sound-screen" (click)="onPlayAudio(config.sound?._id)">
+        <img class="sound-image" [src]="config.sound.image" />
+        <mat-icon class="play-icon">play_circle</mat-icon>
+      </div>
+      <div
+        class="sound-content"
+        fxLayout="column"
+        fxLAyoutAlign="center center"
+      >
+        <p class="small-text">Thu, fri, 2019</p>
+        <p class="title">
+          {{ config.sound.name }}
+        </p>
+        <div class="action">
+          <button mat-icon-button>
+            <mat-icon>content_copy</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

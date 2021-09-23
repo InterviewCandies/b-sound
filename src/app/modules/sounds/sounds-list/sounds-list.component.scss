@@ -12,6 +12,11 @@
     justify-content: center;
     align-items: center;
     height: calc(100vh - 300px);
+
+    mat-icon {
+      transform: scale(10);
+      @include margin(bottom, 2);
+    }
   }
 
   .not-found-text {
