@@ -1,26 +1,56 @@
 @import "/src/styles/rem";
-@import "/src/styles//mixin";
+@import "/src/styles/mixin";
+@import "src/styles/color";
 
-.container {
-  width: 100vw;
-  height: 100vh;
+::ng-deep {
+  .mat-dialog-container {
+    padding: 0;
+    overflow: hidden;
+  }
+}
+
+.dialog-container {
+  padding: 0;
+  position: relative;
+
+  .close-button {
+    position: absolute;
+    color: #fff;
+    z-index: 10;
+    font-size: rem(20px);
+    top: rem(10px);
+    right: rem(30px);
+  }
+
+  .logo {
+    width: rem(100px);
+    z-index: 10;
+    object-fit: contain;
+    position: absolute;
+    top: rem(20px);
+    left: rem(40px);
+  }
+
+  @include margin(left, 10);
+  @include margin(right, 10);
+  @include margin(top, 12);
+  @include margin(bottom, 10);
+
   background-image: url("../../../../assets//images/bg-login.jpg");
   background-position: center;
   background-size: cover;
 }
 
-.overlay {
-  width: 100%;
-  height: 100%;
-  background-color: rgba(65, 58, 58, 0.69);
-  display: flex;
-}
-
 .login-box {
-  position: absolute;
   z-index: 10;
   width: 100%;
   height: 100%;
+
+  .heading {
+    font-size: rem(24px);
+    font-weight: 600;
+    color: #fff;
+  }
 
   form {
     width: 400px;
@@ -30,15 +60,26 @@
     width: 100%;
   }
 
-  .logo {
-    width: rem(250px);
-    object-fit: contain;
-    @include margin(top, 15);
-    @include margin(bottom, 12);
-  }
-
   .login-button {
     font-size: rem(18px);
+    ::ng-deep {
+      .mat-button-wrapper {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        align-items: center;
+        gap: rem(8px);
+      }
+
+      .mat-progress-spinner circle,
+      .mat-spinner circle {
+        stroke: #000;
+      }
+    }
+
+    &:disabled {
+      background-color: $disabled-color;
+    }
   }
 }
 
@@ -51,11 +92,14 @@
   margin: 0;
   font-size: rem(16px);
   text-align: center;
+  color: #fff;
   position: absolute;
-  bottom: rem(80px);
+  bottom: rem(20px);
 
-  a {
-    color: #fff;
+  span {
     font-weight: 600;
+    color: #fff;
+    text-decoration: underline;
+    cursor: pointer;
   }
 }

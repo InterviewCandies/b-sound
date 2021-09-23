@@ -12,7 +12,8 @@ import { take } from 'rxjs/operators';
 import { NavsComponent } from 'src/app/base/components/navs/navs.component';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { RegisterComponent } from '../register/register.component';
 
 @Component({
   selector: 'app-login',
@@ -31,7 +32,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private toasterService: ToasterService,
-    public dialogRef: MatDialogRef<NavsComponent>
+    public dialogRef: MatDialogRef<NavsComponent>,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -39,44 +41,6 @@ export class LoginComponent implements OnInit {
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
     });
-
-    this.registerForm = this.formBuilder.group(
-      {
-        username: ['', [Validators.required]],
-        password: ['', [Validators.required]],
-        confirmedPassword: ['', [Validators.required]],
-      },
-      { validators: this.checkPasswords }
-    );
-  }
-
-  checkPasswords: ValidatorFn = (
-    group: AbstractControl
-  ): ValidationErrors | null => {
-    let pass = group.get('password').value;
-    let confirmPass = group.get('confirmedPassword').value;
-    return pass === confirmPass ? null : { notSame: true };
-  };
-
-  onRegister() {
-    if (this.registerForm.valid) {
-      const username = this.registerForm.get('username').value;
-      const password = this.registerForm.get('password').value;
-      this.isRegister = true;
-      this.authService
-        .register(username, password)
-        .pipe(take(1))
-        .subscribe(
-          (token) => {
-            this.onSuccess(token, 'Register');
-            this.isRegister = false;
-          },
-          ({ error }) => {
-            this.toasterService.showMessage('error', error.message);
-            this.isRegister = false;
-          }
-        );
-    }
   }
 
   onLogin() {
@@ -102,7 +66,9 @@ export class LoginComponent implements OnInit {
         );
     }
   }
-
+  openRegister() {
+    this.dialog.open(RegisterComponent);
+  }
   onSuccess(token: string, action: string = '') {
     localStorage.setItem('bsound_token', token);
     this.toasterService.showMessage('success', action + ' successfully!');

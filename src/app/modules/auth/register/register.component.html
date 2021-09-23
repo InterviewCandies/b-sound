@@ -1,34 +1,41 @@
-<div class="container">
-  <div class="login-box" fxLayout="column" fxLayoutAlign="start center">
-    <img src="../../../../assets/images/logo.png" alt="logo" class="logo" />
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <app-auth-input
-        formControlName="username"
-        placeholder="Username"
-        icon="person"
-      ></app-auth-input>
-      <app-auth-input
-        type="password"
-        formControlName="password"
-        placeholder="Password"
-        icon="lock"
-      ></app-auth-input>
-      <app-auth-input
-        type="password"
-        formControlName="confirmedPassword"
-        placeholder="Confirm password"
-        icon="lock"
-      ></app-auth-input>
-      <button
-        type="submit"
-        mat-raised-button
-        color="primary"
-        class="login-button"
-      >
-        Register
-      </button>
-    </form>
-    <p class="sign-up-text">Have an account ? <a href="/">Login</a></p>
+<mat-dialog-content class="dialog-container">
+  <img src="../../../../assets/images/logo.png" alt="logo" class="logo" />
+  <div class="container">
+    <div class="login-box" fxLayout="column" fxLayoutAlign="start center">
+      <img src="../../../../assets/images/logo.png" alt="logo" class="logo" />
+      <form [formGroup]="registerForm" (ngSubmit)="onRegister()" fxFlex="50">
+        <p class="heading">Register</p>
+        <app-auth-input
+          formControlName="username"
+          placeholder="Username"
+          icon="person"
+        ></app-auth-input>
+        <app-auth-input
+          type="password"
+          formControlName="password"
+          placeholder="Password"
+          icon="lock"
+        ></app-auth-input>
+        <app-auth-input
+          type="password"
+          formControlName="confirmedPassword"
+          placeholder="Confirm password"
+          icon="lock"
+        ></app-auth-input>
+        <button
+          type="submit"
+          mat-raised-button
+          color="primary"
+          class="login-button"
+          [disabled]="!registerForm.valid"
+        >
+          <mat-spinner [diameter]="20" *ngIf="isRegister"></mat-spinner>
+          <span>Register</span>
+        </button>
+      </form>
+      <p class="sign-up-text">
+        Have an account ? <span (click)="dialogRef.close()">Login</span>
+      </p>
+    </div>
   </div>
-  <div class="overlay"></div>
-</div>
+</mat-dialog-content>

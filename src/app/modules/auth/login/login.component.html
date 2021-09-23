@@ -4,65 +4,36 @@
   </button>
   <img src="../../../../assets/images/logo.png" alt="logo" class="logo" />
   <div class="container">
-    <div class="login-box" fxLayout="column" fxLayoutAlign="start center">
-      <div fxLayout="row" fxLayoutGap="100px">
-        <form [formGroup]="loginForm" (ngSubmit)="onLogin()" fxFlex="50">
-          <p class="heading">Login</p>
-          <app-auth-input
-            formControlName="username"
-            placeholder="Username"
-            icon="person"
-            [error]="loginErrorMessage"
-          ></app-auth-input>
-          <app-auth-input
-            type="password"
-            formControlName="password"
-            placeholder="Password"
-            icon="lock"
-            [error]="loginErrorMessage"
-          ></app-auth-input>
-          <button
-            type="submit"
-            mat-raised-button
-            color="primary"
-            class="login-button"
-            [disabled]="!loginForm.valid"
-          >
-            <mat-spinner [diameter]="20" *ngIf="isLogin"></mat-spinner>
-            <span>Login</span>
-          </button>
-        </form>
-        <form [formGroup]="registerForm" (ngSubmit)="onRegister()" fxFlex="50">
-          <p class="heading">Register</p>
-          <app-auth-input
-            formControlName="username"
-            placeholder="Username"
-            icon="person"
-          ></app-auth-input>
-          <app-auth-input
-            type="password"
-            formControlName="password"
-            placeholder="Password"
-            icon="lock"
-          ></app-auth-input>
-          <app-auth-input
-            type="password"
-            formControlName="confirmedPassword"
-            placeholder="Confirm password"
-            icon="lock"
-          ></app-auth-input>
-          <button
-            type="submit"
-            mat-raised-button
-            color="primary"
-            class="login-button"
-            [disabled]="!registerForm.valid"
-          >
-            <mat-spinner [diameter]="20" *ngIf="isRegister"></mat-spinner>
-            <span>Register</span>
-          </button>
-        </form>
-      </div>
+    <div class="login-box" fxLayout="column" fxLayoutAlign="center center">
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <p class="heading">Login</p>
+        <app-auth-input
+          formControlName="username"
+          placeholder="Username"
+          icon="person"
+          [error]="loginErrorMessage"
+        ></app-auth-input>
+        <app-auth-input
+          type="password"
+          formControlName="password"
+          placeholder="Password"
+          icon="lock"
+          [error]="loginErrorMessage"
+        ></app-auth-input>
+        <button
+          type="submit"
+          mat-raised-button
+          color="primary"
+          class="login-button"
+          [disabled]="!loginForm.valid"
+        >
+          <mat-spinner [diameter]="20" *ngIf="isLogin"></mat-spinner>
+          <span>Login</span>
+        </button>
+      </form>
+      <p class="sign-up-text">
+        Have an account ? <span (click)="openRegister()">Register</span>
+      </p>
     </div>
   </div>
 </mat-dialog-content>
