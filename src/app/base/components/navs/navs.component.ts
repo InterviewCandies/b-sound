@@ -29,6 +29,7 @@ export class NavsComponent implements OnInit {
   }
 
   openProfile() {
+    this.router.navigateByUrl('/');
     this.toaster.showMessage('success', 'You have logged out');
     localStorage.removeItem('bsound_token');
   }
