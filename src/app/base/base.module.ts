@@ -13,6 +13,10 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { CommonModule } from '@angular/common';
 import { SimpleToasterComponent } from './components/simple-toaster/simple-toaster.component';
 import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
+import {
+  MatProgressSpinner,
+  MatProgressSpinnerModule,
+} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -27,6 +31,7 @@ import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
     MatButtonModule,
     MatIconModule,
     MatInputModule,
+    MatProgressSpinnerModule,
     FlexLayoutModule,
     MatTooltipModule,
     MatFormFieldModule,

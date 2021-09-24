@@ -23,6 +23,7 @@ import { OptionButtonComponent } from './sound-options/option-button/option-butt
 import { SoundProducerComponent } from './sound-producer/sound-producer.component';
 import { SoundUploadComponent } from './sound-producer/sound-upload/sound-upload.component';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
+import { ClipboardModule } from 'ngx-clipboard';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { IvyCarouselModule } from 'angular-responsive-carousel';
     MatTooltipModule,
     FlexLayoutModule,
     MatFormFieldModule,
+    ClipboardModule,
     IvyCarouselModule,
     MatSelectModule,
     FormsModule,

@@ -1,4 +1,8 @@
 <div class="input-wrapper" fxLayout="row" fxLayoutAlign="none center">
   <mat-icon>search</mat-icon>
-  <input (keyup)="onKeyUp($event)" placeholder="Search sounds by name or tag" />
+  <input
+    (keyup)="onKeyUp($event)"
+    placeholder="Search sounds by name or tag"
+    #input
+  />
 </div>

@@ -85,4 +85,32 @@ export class SoundService {
       }
     );
   }
+
+  getSharedConfigurationCode(
+    id: string,
+    config: ConfigurationEntity
+  ): Observable<string> {
+    const authToken = localStorage.getItem('bsound_token');
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${authToken}`,
+    });
+
+    return this.http
+      .post<ApiResponse<any>>(BASE_URL + '/sound/share/' + id, config, {
+        headers: headers,
+      })
+      .pipe(map((response) => response.data?.shareStr));
+  }
+
+  getConfigurationByCode(code: string): Observable<ConfigurationEntity> {
+    return this.http
+      .get<ApiResponse<ConfigurationEntity>>(BASE_URL + '/sound/share/' + code)
+      .pipe(
+        map((response) => {
+          if (response.success) return response.data;
+          return null;
+        })
+      );
+  }
 }

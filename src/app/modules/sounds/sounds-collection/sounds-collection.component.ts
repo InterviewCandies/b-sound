@@ -4,6 +4,7 @@ import { take } from 'rxjs/operators';
 import { ConfigurationEntity } from 'src/app/core/entities/configuration.entity';
 import { Router } from '@angular/router';
 import { ToasterService } from 'src/app/core/services/toaster.service';
+import { ClipboardService } from 'ngx-clipboard';
 
 @Component({
   selector: 'app-sounds-collection',
@@ -17,7 +18,8 @@ export class SoundsCollectionComponent implements OnInit {
   constructor(
     private soundService: SoundService,
     private router: Router,
-    private toasterSevice: ToasterService
+    private toasterSevice: ToasterService,
+    private clipBoardService: ClipboardService
   ) {}
 
   ngOnInit(): void {
@@ -40,7 +42,27 @@ export class SoundsCollectionComponent implements OnInit {
     this.router.navigateByUrl('sounds/' + id);
   }
 
-  onCopyLink() {
-    this.toasterSevice.showMessage('success', 'Link copied !');
+  onCopyLink(config: ConfigurationEntity) {
+    this.toasterSevice.showMessage('proccessing', 'Proccessing');
+    this.soundService
+      .getSharedConfigurationCode(config.sound._id, config)
+      .pipe(take(1))
+      .subscribe(
+        (code) => {
+          this.toasterSevice.hideMessage();
+          const url = 'http://localhost:4200/sounds/shared' + code;
+          this.clipBoardService.copy(url);
+          /*  this.soundService
+            .getConfigurationByCode(code)
+            .pipe(take(1))
+            .subscribe((config) => {
+              console.log(config);
+            });*/
+          this.toasterSevice.showMessage('success', 'Link copied !');
+        },
+        ({ error }) => {
+          this.toasterSevice.showMessage('error', error.message);
+        }
+      );
   }
 }

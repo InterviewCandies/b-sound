@@ -15,7 +15,11 @@ export class ToasterService {
         status,
         message,
       },
-      duration: this.durationInSeconds * 1000,
+      duration: status === 'proccessing' ? 0 : this.durationInSeconds * 1000,
     });
+  }
+
+  hideMessage() {
+    this.snackBar.dismiss();
   }
 }

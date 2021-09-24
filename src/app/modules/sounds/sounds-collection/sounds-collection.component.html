@@ -29,7 +29,7 @@
           {{ config.sound.name }}
         </p>
         <div class="action">
-          <button mat-icon-button (click)="onCopyLink()">
+          <button mat-icon-button (click)="onCopyLink(config)" ngxClipboard>
             <mat-icon>content_copy</mat-icon>
           </button>
         </div>

@@ -4,8 +4,12 @@
   fxLayoutGap="12px"
   fxLayoutAlign="center center"
 >
-  <mat-icon [ngClass]="status + '-icon'"
+  <mat-icon
+    [ngClass]="status + '-icon'"
+    *ngIf="status === 'success' || status === 'error'"
     >{{ status === "error" ? "cancel" : "check_circle" }}
   </mat-icon>
+  <mat-spinner diameter="20" *ngIf="status === 'proccessing'"></mat-spinner>
+
   <p class="message">{{ message }}</p>
 </div>

@@ -1,1 +1,1 @@
-export type StatusType = 'success' | 'error';
+export type StatusType = 'success' | 'error' | 'proccessing';
