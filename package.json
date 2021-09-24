@@ -24,6 +24,7 @@
     "@angular/router": "^12.2.6",
     "angular-responsive-carousel": "^2.1.2",
     "express": "^4.17.1",
+    "ng-lazyload-image": "^9.1.0",
     "ngx-clipboard": "^14.0.1",
     "path": "^0.12.7",
     "rxjs": "~6.6.0",

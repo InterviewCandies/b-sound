@@ -4,7 +4,11 @@
     <mat-icon mat-dialog-close>close</mat-icon>
   </button>
   <div fxLayout="row" fxLayoutGap="50px" fxLayoutAlign="none center">
-    <img src="../../../../assets/images/register.svg" class="register-svg" />
+    <img
+      lazyLoad="../../../../assets/images/register.svg"
+      defaultImage="https://via.placeholder.com/1000/000000/FFFFFF/?text=BSOUND"
+      class="register-svg"
+    />
     <div class="login-box" fxLayout="column" fxLayoutAlign="start center">
       <img src="../../../../assets/images/logo.png" alt="logo" class="logo" />
       <form [formGroup]="registerForm" (ngSubmit)="onRegister()" fxFlex="50">

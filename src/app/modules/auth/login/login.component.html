@@ -4,7 +4,11 @@
   </button>
   <img src="../../../../assets/images/logo.png" alt="logo" class="logo" />
   <div fxLayout="row" fxLayoutGap="50px" fxLayoutAlign="none center">
-    <img src="../../../../assets/images/login.svg" class="login-svg" />
+    <img
+      lazyLoad="../../../../assets/images/login.svg"
+      defaultImage="https://via.placeholder.com/1000/000000/FFFFFF/?text=BSOUND"
+      class="login-svg"
+    />
     <div class="login-box" fxLayout="column" fxLayoutAlign="center center">
       <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
         <p class="heading">Login in now to personalize your sound !</p>

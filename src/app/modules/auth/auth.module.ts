@@ -10,6 +10,7 @@ import { RegisterComponent } from './register/register.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 @NgModule({
   declarations: [LoginComponent, AuthInputComponent, RegisterComponent],
@@ -18,6 +19,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     FlexLayoutModule,
     ReactiveFormsModule,
     FormsModule,
+    LazyLoadImageModule,
     CommonModule,
     MatInputModule,
     MatIconModule,
