@@ -29,9 +29,7 @@ const BASE_TYPE = '.mp3';
   templateUrl: './sound-player.component.html',
   styleUrls: ['./sound-player.component.scss'],
 })
-export class SoundPlayerComponent
-  implements OnInit, OnDestroy, AfterContentInit
-{
+export class SoundPlayerComponent implements OnInit, OnDestroy {
   @ViewChild('options', { static: false }) options: SoundOptionsComponent;
   @ViewChild('audio', { static: false }) audio: HTMLAudioElement;
 
@@ -85,18 +83,6 @@ export class SoundPlayerComponent
             }
           );
       });
-  }
-
-  ngAfterContentInit(): void {
-    this.audio.onloadedmetadata = () => {
-      this.isLoading = true;
-      console.log('load meta');
-    };
-
-    this.audio.oncanplay = () => {
-      this.isLoading = false;
-      console.log('loaded');
-    };
   }
 
   private getCustomSoundConfigs(sounds: object) {
