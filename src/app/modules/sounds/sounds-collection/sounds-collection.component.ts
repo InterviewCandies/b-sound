@@ -50,14 +50,8 @@ export class SoundsCollectionComponent implements OnInit {
       .subscribe(
         (code) => {
           this.toasterSevice.hideMessage();
-          const url = 'http://localhost:4200/sounds/shared' + code;
+          const url = 'http://localhost:4200/sounds/sharing/' + code;
           this.clipBoardService.copy(url);
-          /*  this.soundService
-            .getConfigurationByCode(code)
-            .pipe(take(1))
-            .subscribe((config) => {
-              console.log(config);
-            });*/
           this.toasterSevice.showMessage('success', 'Link copied !');
         },
         ({ error }) => {

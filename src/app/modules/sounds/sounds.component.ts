@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { NavigationStart, Router } from '@angular/router';
 import { ProfileComponent } from '../profile/profile.component';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-sounds',
@@ -8,9 +10,15 @@ import { ProfileComponent } from '../profile/profile.component';
   styleUrls: ['./sounds.component.scss'],
 })
 export class SoundsComponent implements OnInit {
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog, private router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationStart))
+      .subscribe((event: any) => {
+        console.log(event.url);
+      });
+  }
 
   openProfile() {
     const dialogRef = this.dialog.open(ProfileComponent);

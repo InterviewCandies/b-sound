@@ -27,7 +27,7 @@ import { SoundProducerComponent } from './modules/sounds/sound-producer/sound-pr
 
 const appRoutes: Routes = [
   { path: 'sounds/:id', component: SoundPlayerComponent },
-  { path: 'sounds/share/:id', redirectTo: 'sounds/:id' },
+  { path: 'sounds/sharing/:id', redirectTo: 'sounds/:id' },
   { path: '**', redirectTo: '' },
 ];
 

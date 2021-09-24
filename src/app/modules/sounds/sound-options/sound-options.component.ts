@@ -107,6 +107,7 @@ export class SoundOptionsComponent implements OnInit, OnDestroy {
     }
 
     this.isSavingConfiguration = true;
+    this.toasterService.showMessage('proccessing', 'Saving your configuration');
 
     const getSoundConfigs = () => {
       const obj: Record<string, number> = {};
@@ -127,6 +128,8 @@ export class SoundOptionsComponent implements OnInit, OnDestroy {
       .subscribe(
         (response) => {
           if (response.success) {
+            this.toasterService.hideMessage();
+
             this.toasterService.showMessage(
               'success',
               'Configuration for this sound has been saved !'
@@ -161,6 +164,8 @@ export class SoundOptionsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     for (const item of this.audios) {
+      item.audio.pause();
+      item.audio.src = '';
       if (item.timeout) clearTimeout(item.timeout);
       clearInterval(item.interval);
     }

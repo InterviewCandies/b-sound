@@ -11,7 +11,7 @@ import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SoundEntity } from 'src/app/core/entities/sound.entity';
 import { SoundService } from 'src/app/core/services/sound.service';
-import { find, take, takeUntil } from 'rxjs/operators';
+import { find, skipUntil, take, takeUntil } from 'rxjs/operators';
 import { ShowHideStyleBuilder } from '@angular/flex-layout';
 import { SoundOptionsComponent } from '../sound-options/sound-options.component';
 import { combineLatest, fromEvent, Subject } from 'rxjs';
@@ -52,26 +52,32 @@ export class SoundPlayerComponent implements OnInit, OnDestroy {
 
     this.isLoading = true;
 
-    combineLatest(
-      this.soundService.fetchSoundById(id),
-      this.soundService.getSoundConfiguration(id)
-    )
+    this.soundService
+      .getConfigurationByCode(id)
       .pipe(take(1))
-      .subscribe(
-        ([sound, config]) => {
-          this.sound = sound;
-          if (config) {
-            const { loop, time, ...sounds } = config;
-            this.isLoop = loop;
-            this.getCustomSoundConfigs(sounds);
-          }
-          this.isLoading = false;
-        },
-        ({ error }) => {
-          this.toasterService.showMessage('error', error.message);
-          this.isLoading = false;
-        }
-      );
+      .subscribe((response) => {
+        if (response) this.soundId = response.sound._id;
+        combineLatest(
+          this.soundService.fetchSoundById(this.soundId),
+          this.soundService.getSoundConfiguration(this.soundId)
+        )
+          .pipe(take(1))
+          .subscribe(
+            ([sound, config]) => {
+              this.sound = sound;
+              if (config) {
+                const { loop, time, ...sounds } = config;
+                this.isLoop = loop;
+                this.getCustomSoundConfigs(sounds);
+              }
+              this.isLoading = false;
+            },
+            ({ error }) => {
+              this.toasterService.showMessage('error', error.message);
+              this.isLoading = false;
+            }
+          );
+      });
   }
 
   private getCustomSoundConfigs(sounds: object) {
