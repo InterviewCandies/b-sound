@@ -12,13 +12,7 @@ import { filter } from 'rxjs/operators';
 export class SoundsComponent implements OnInit {
   constructor(private dialog: MatDialog, private router: Router) {}
 
-  ngOnInit() {
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationStart))
-      .subscribe((event: any) => {
-        console.log(event.url);
-      });
-  }
+  ngOnInit() {}
 
   openProfile() {
     const dialogRef = this.dialog.open(ProfileComponent);
