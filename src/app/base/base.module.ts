@@ -17,6 +17,7 @@ import {
   MatProgressSpinner,
   MatProgressSpinnerModule,
 } from '@angular/material/progress-spinner';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,8 @@ import {
     CommonModule,
     MatButtonModule,
     MatIconModule,
+    ReactiveFormsModule,
+    FormsModule,
     MatInputModule,
     MatProgressSpinnerModule,
     FlexLayoutModule,

@@ -1,4 +1,5 @@
 import {
+  AfterContentInit,
   AfterViewInit,
   Component,
   OnChanges,
@@ -28,9 +29,11 @@ const BASE_TYPE = '.mp3';
   templateUrl: './sound-player.component.html',
   styleUrls: ['./sound-player.component.scss'],
 })
-export class SoundPlayerComponent implements OnInit, OnDestroy {
+export class SoundPlayerComponent
+  implements OnInit, OnDestroy, AfterContentInit
+{
   @ViewChild('options', { static: false }) options: SoundOptionsComponent;
-  @ViewChild('audio', { static: true }) audio: HTMLAudioElement;
+  @ViewChild('audio', { static: false }) audio: HTMLAudioElement;
 
   sound: SoundEntity = null;
   isLoading: boolean = false;
@@ -84,11 +87,24 @@ export class SoundPlayerComponent implements OnInit, OnDestroy {
       });
   }
 
+  ngAfterContentInit(): void {
+    this.audio.onloadedmetadata = () => {
+      this.isLoading = true;
+      console.log('load meta');
+    };
+
+    this.audio.oncanplay = () => {
+      this.isLoading = false;
+      console.log('loaded');
+    };
+  }
+
   private getCustomSoundConfigs(sounds: object) {
     for (const [name, time] of Object.entries(sounds)) {
       if (typeof time === 'number' && time) {
         const newAudio = new Audio();
         newAudio.src = BASE_SRC + name + BASE_TYPE;
+        newAudio.play();
         this.customAudios.push({
           audio: newAudio,
           interval: setInterval(() => {
@@ -98,11 +114,6 @@ export class SoundPlayerComponent implements OnInit, OnDestroy {
         });
       }
     }
-  }
-
-  private stopAudio() {
-    this.audio.pause();
-    this.audio.currentTime = 0;
   }
 
   ngOnDestroy() {

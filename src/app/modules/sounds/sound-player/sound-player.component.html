@@ -23,10 +23,11 @@
     <img [src]="sound.image" class="circle-image" />
     <h3>{{ sound.name }}</h3>
     <audio
+      muted
       controls
       controlsList="nodownload"
       [loop]="options.isRepeating"
-      autoplay
+      autoplay=""
       #audio
     >
       <source [src]="sound.audio" />
