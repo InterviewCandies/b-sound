@@ -72,7 +72,6 @@ export class SoundPlayerComponent implements OnInit, OnDestroy {
               if (config) {
                 const { loop, time, ...sounds } = config;
                 this.isLoop = loop;
-                console.log(loop);
                 this.getCustomSoundConfigs(sounds);
               }
               this.isLoading = false;
