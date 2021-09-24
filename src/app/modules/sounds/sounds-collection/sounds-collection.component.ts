@@ -43,14 +43,15 @@ export class SoundsCollectionComponent implements OnInit {
   }
 
   onCopyLink(config: ConfigurationEntity) {
-    this.toasterSevice.showMessage('proccessing', 'Proccessing');
+    this.toasterSevice.showMessage('proccessing', 'Processing...');
     this.soundService
       .getSharedConfigurationCode(config.sound._id, config)
       .pipe(take(1))
       .subscribe(
         (code) => {
           this.toasterSevice.hideMessage();
-          const url = 'http://localhost:4200/sounds/sharing/' + code;
+          const origin = window.location.origin;
+          const url = `${origin}/sounds/sharing/${code}`;
           this.clipBoardService.copy(url);
           this.toasterSevice.showMessage('success', 'Link copied !');
         },

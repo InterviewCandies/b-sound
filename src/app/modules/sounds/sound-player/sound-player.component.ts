@@ -34,6 +34,7 @@ export class SoundPlayerComponent implements OnInit, OnDestroy {
 
   sound: SoundEntity = null;
   isLoading: boolean = false;
+  isHideGoBackButton = false;
   isLoop: boolean = false;
   unsubscriber$ = new Subject();
   soundId: string = '';
@@ -56,7 +57,10 @@ export class SoundPlayerComponent implements OnInit, OnDestroy {
       .getConfigurationByCode(id)
       .pipe(take(1))
       .subscribe((response) => {
-        if (response) this.soundId = response.sound._id;
+        if (response) {
+          this.isHideGoBackButton = true;
+          this.soundId = response.sound._id;
+        }
         combineLatest(
           this.soundService.fetchSoundById(this.soundId),
           this.soundService.getSoundConfiguration(this.soundId)
@@ -68,6 +72,7 @@ export class SoundPlayerComponent implements OnInit, OnDestroy {
               if (config) {
                 const { loop, time, ...sounds } = config;
                 this.isLoop = loop;
+                console.log(loop);
                 this.getCustomSoundConfigs(sounds);
               }
               this.isLoading = false;

@@ -12,6 +12,7 @@
     [color]="endTime ? 'primary' : 'default'"
     (onClick)="onSetTime()"
     icon="timer"
+    *ngIf="false"
   >
   </app-option-button>
   <app-option-button
@@ -32,7 +33,7 @@
   </app-option-button>
   <app-option-button
     [disabled]="disabled"
-    [tooltipMessage]="getSoundTooltip('Mediation water', 'water')"
+    [tooltipMessage]="getSoundTooltip('Water ripple', 'water')"
     [color]="getTimer('water') ? 'primary' : ''"
     (onClick)="onClickSound('../../../../assets/audios/water.mp3')"
     icon="water_drop"

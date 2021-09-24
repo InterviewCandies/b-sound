@@ -107,7 +107,10 @@ export class SoundOptionsComponent implements OnInit, OnDestroy {
     }
 
     this.isSavingConfiguration = true;
-    this.toasterService.showMessage('proccessing', 'Saving your configuration');
+    this.toasterService.showMessage(
+      'proccessing',
+      'Saving your configuration...'
+    );
 
     const getSoundConfigs = () => {
       const obj: Record<string, number> = {};
